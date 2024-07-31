@@ -1,4 +1,3 @@
-
 <?php
 
 $request =  trim($_SERVER['REQUEST_URI'], '/');
