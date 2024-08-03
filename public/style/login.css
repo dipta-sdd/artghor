@@ -1,14 +1,31 @@
 body{
     position: relative;
 }
+@media only screen and (min-width: 992px){
+    #nav_con {
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        box-shadow: none;
+        position: absolute;
+    }
+
+    #nav_con nav.navbar {
+        margin-top: .5em;
+        border-radius: .5em;
+        background: rgba(255, 255, 255, 0.3);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
 #nav_con{
-    background-color: transparent;
+    /* background-color: transparent; */
+    top: 0;
+    left: 0;
     box-shadow: none;
-    position: absolute;
 }
 #nav_con nav.navbar{
-    margin-top: .5em;
-    border-radius: .5em;
     background: rgba(255, 255, 255, 0.3);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
@@ -73,7 +90,8 @@ body{
 }
 @media only screen and (max-width: 991px){
     .con-form {
-        width: clamp(700px, 90%, 1000px);
+        width: clamp(400px, 90%, 550px);
+        height: auto;
         display: flex;
         border-radius: .5em;
     }
@@ -124,6 +142,7 @@ body{
     -moz-box-shadow: 0 0 1px 1px #c4c3c3;
     box-shadow: 0 0 1px 1px #c4c3c3;
     border: none;
+    font-weight: 500;
 }
 #nav_con nav.navbar input:focus-visible,
 .con-form .right .input:focus,
@@ -157,4 +176,44 @@ body{
 .con-form .right a:hover{
     color: rgb(27, 27, 251);
     transition: .3s;
+}
+#otp span{
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+}
+#otp span .input{
+    width: 1.7em !important;
+    height: 1.7em !important;
+    border-radius: 0;
+    padding: 0;
+    text-align: center;
+}
+#otp a{
+    text-align: start;
+}
+#otp a.disabled{
+    cursor:none;
+    opacity: 0.7;
+}
+#otp a.disabled:hover{
+    color: #3f3f3f;
+}
+/* hide arrow on input field */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#otp span.time{
+    padding: 0 .9em;
+    margin: 0 0 -.3em 0;
+    font-size: smaller;
+    font-weight: 500;
+    color: rgb(83, 97, 255);
+    justify-content: start;
 }

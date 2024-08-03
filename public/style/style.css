@@ -2,8 +2,7 @@
 
 
 body {
-    background-color: rgb(209, 216, 224);
-    /* height: 222vh; */
+    background-color: rgb(236, 240, 241);
     font-family: 'Quicksand', 'Montserrat', 'Inter';
 }
 
@@ -12,11 +11,14 @@ body {
     margin-top: .5em;
     margin-bottom: .5em;
 }
-
+@media only screen and (min-width: 1600px) {
+    .container{
+        max-width: 94%;
+    }
+}
 /* navabr */
 #nav_con {
     position: -webkit-sticky;
-    /* Safari */
     z-index: 10;
     position: sticky;
     display: block;
@@ -25,10 +27,11 @@ body {
     background-color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
+    padding-bottom: .5em;
     /* border-bottom: .09em solid #00f2ff; */
-    -webkit-box-shadow: 1px 6px 12px -9.5px #000000;
-    -moz-box-shadow: 1px 6px 12px -9.5px #000000;
-    box-shadow: 1px 6px 12px -9.5px #000000;
+    -webkit-box-shadow: 0 0 1.5px 1px #dddddd;
+    -moz-box-shadow: 0 0 1.5px 1px #dddddd;
+    box-shadow: 0 0 1.5px 1px #dddddd;
 }
 #nav_con nav{
     padding-top: 0;
