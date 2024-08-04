@@ -1,7 +1,11 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
@@ -63,6 +67,7 @@ class AuthController extends Controller
             $user->otp_email = $otp_email;
             $user->otp_exp_email = now()->addMinutes(5);
             $user->save();
+            $res_email = $this->sendEmail($user->email, $otp_email);
             return response()->json(['message' => 'An OTP has been send to your email.']);
         } else {
             if ($user->mobile) {
@@ -119,6 +124,40 @@ class AuthController extends Controller
         }
         return $otp;
     }
+
+
+    protected function sendEmail($to, $otp)
+    {
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings (Secure SSL/TLS)
+            $mail->SMTPDebug = 0; // Enable verbose debug output
+            $mail->isSMTP();
+            $mail->Host = 'mail.artghor.com';
+            $mail->Port = 465; // SMTP port
+            $mail->SMTPSecure = 'ssl'; // Enable encryption, `tls` also accepted
+            $mail->SMTPAuth = true; // Enable SMTP authentication
+            $mail->Username = 'noreply@artghor.com'; // Replace with your email
+            $mail->Password = 'Spider@2580'; // Replace with your password
+
+            // Recipients
+            $mail->setFrom('noreply@artghor.com', 'artghor.com'); // Replace with your name
+            $mail->addAddress($to);
+
+            // Content
+            $mail->isHTML(true); // Set email format to HTML
+            $mail->Subject = "Verification Code";
+            $mail->Body = "Your artghor verification code is " . $otp;
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            return false;
+        }
+    }
+
     protected function sms_send($number, $otp)
     {
         $url = "http://bulksmsbd.net/api/smsapi";
