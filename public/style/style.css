@@ -127,13 +127,16 @@ nav.navbar.navbar-expand-lg {
         padding-left: 1em;
     }
 
-    #nav_con li.nav-item a::after {
+    #nav_con li.nav-item a::before {
         content: '';
-        margin-left: 1em;
-        border-right: .2em solid #000000;
+        margin-right: 1em;
+        border-left: .2em solid #000000;
     }
 
-    #nav_con li.nav-item:last-child a::after {
+    #nav_con li.nav-item:first-child a::before {
         border: none;
+    }
+    #nav_con ul{
+        padding-right: 1em;
     }
 }

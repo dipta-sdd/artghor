@@ -7,7 +7,6 @@ $(window).on("resize", function () {
 });
 function prod_con_resize() {
     let prod_con_width = $("#prod_con .container").width();
-    console.log(prod_con_width);
     prod_con_width -= prod_con_width % 260;
     $("#prod_con .container .d-flex").width(prod_con_width);
 }

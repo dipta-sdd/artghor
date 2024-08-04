@@ -32,11 +32,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="/cart">Cart</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item logged-out">
                                 <a class="nav-link" aria-current="page" href="/login">Login</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/cart">Sign Up</a>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
                             </li>
                         </ul>
                         <form class="d-flex justify-content-end ">
@@ -59,37 +59,19 @@
                     <span>Tag line.</span>
                 </div>
                 <div class="right">
-                    <form action="" class="d-none" autocomplete="new-password" id="login">
+                    <form action="" class="" autocomplete="new-password" id="login">
                         <h3>Log In</h3>
                         <label for="">Email or Phone or Username</label>
-                        <input type="text" name="email" class="input" autocomplete="new-password"
+                        <input type="text" name="email" class="input email" autocomplete="new-password"
                             placeholder="Email/Phone/Username" />
                         <label for="">Password</label>
                         <input type="password" name="password" placeholder="Password" autocomplete="new-password"
-                            class="input" />
+                            class="input pass" />
                         <button class="login">Log In</button>
                         <span>
                             <a href="/forge-password">Forge Password</a>
                             <a href="/signup">Sign Up</a>
                         </span>
-
-                    </form>
-                    <form action="" class="" autocomplete="new-password" id="otp">
-                        <h3>Log In</h3>
-                        <label for="">Enter Your Verification Code</label>
-                        <span class="time">Your OTP will be expired in 05m 00s.</span>
-                        <span>
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                            <input type="text" pattern="\d" class="input" maxlength="1" autocomplete="new-password" />
-                        </span>
-
-
-                        <button class="login">Continue</button>
-                        <a href="#Resend" class="disabled">Resend OTP in 03m 00s.</a>
 
                     </form>
                 </div>
@@ -101,9 +83,11 @@
 <script src="../script/jquery-3.7.1.min.js"></script>
 <script src="../script/popper.min.js"></script>
 <script src="../script/bootstrap.min.js"></script>
+<script src="../script/script.js"></script>
 <script src="../script/login.js"></script>
 <script>
 
 </script>
+on_page_load('');
 
 </html>

@@ -208,7 +208,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-
+#otp span.error,
 #otp span.time{
     padding: 0 .9em;
     margin: 0 0 -.3em 0;
@@ -216,4 +216,8 @@ input[type=number] {
     font-weight: 500;
     color: rgb(83, 97, 255);
     justify-content: start;
+}
+#otp span.error{
+    margin: -.3em 0 0 0;
+    color: red;
 }

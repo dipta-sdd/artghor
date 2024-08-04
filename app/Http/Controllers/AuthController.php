@@ -21,10 +21,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $user = User::where('email', $request->email)->orWhere('mobile', $request->mobile)->first();
-
-
-
         $credentials = $request->only('email', 'password');
         if (!$token = $this->guard()->attempt($credentials)) {
             $credentials = $request->only('username', 'password');
@@ -33,23 +29,7 @@ class AuthController extends Controller
                 if (!$token = $this->guard()->attempt($credentials)) {
                     return response()->json(['error' => 'Unauthorized'], 401);
                 }
-                // return $this->respondWithToken($token);
             }
-            // return $this->respondWithToken($token);
-        }
-
-
-        $request->validate([
-            'email' => 'required_without_all:mobile,username|string|email',
-            'mobile' => 'required_without_all:email,username|string',
-            'username' => 'required_without_all:email,mobile|string',
-        ]);
-        $user = User::where('email', $request->email)
-            ->orWhere('mobile', $request->mobile)
-            ->orWhere('username', $request->username)
-            ->first();
-        if (!$user || (!$user->email_verified_at && !$user->mobile_verified_at)) {
-            return response()->json(['error' => 'Unverified'], 401);
         }
         return $this->respondWithToken($token);
     }
@@ -67,6 +47,55 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+    public function otp(Request $request)
+    {
+        $user = auth()->user();
+        $method = $request->input('method');
+        $otp_sms = $this->generateOTP();
+        $otp_email = $this->generateOTP();
+        if ($method == 'sms') {
+            $user->otp_sms = $otp_sms;
+            $user->otp_exp_sms = now()->addMinutes(5);
+            $user->save();
+            $res_sms = $this->sms_send($user->mobile, $otp_sms);
+            return response()->json(['message' => 'An OTP has been send to your phone.']);
+        } elseif ($method == 'email') {
+            $user->otp_email = $otp_email;
+            $user->otp_exp_email = now()->addMinutes(5);
+            $user->save();
+            return response()->json(['message' => 'An OTP has been send to your email.']);
+        } else {
+            if ($user->mobile) {
+                $user->otp_sms = $otp_sms;
+                $user->otp_exp_sms = now()->addMinutes(5);
+                $res_sms = $this->sms_send($user->mobile, $otp_sms);
+            }
+            if ($user->email) {
+                $user->otp_email = $otp_email;
+                $user->otp_exp_email = now()->addMinutes(5);
+            }
+
+
+            $user->save();
+            return response()->json(['message' => 'An OTP has been send to your email and phone.']);
+        }
+    }
+
+    public function verify(Request $request)
+    {
+        $user = auth()->user();
+        $otp = $request->input('otp');
+        if ($user->otp_sms == $otp && now() < $user->otp_exp_sms) {
+            $user->mobile_verified_at = now();
+            $user->save();
+            return response()->json(['message' => 'Your phone no has been successfully verified.']);
+        } elseif ($user->otp_email == $otp && now() < $user->otp_exp_email) {
+            $user->email_verified_at = now();
+            $user->save();
+            return response()->json(['message' => 'Your phone no has been successfully verified.']);
+        }
+        return response()->json(['message' => 'Invalid code. Try again.'], 400);
+    }
 
     public function refresh()
     {
@@ -80,7 +109,39 @@ class AuthController extends Controller
             'token_type' => 'bearer'
         ]);
     }
+    protected function generateOTP()
+    {
+        $length = 6;
+        $characters = '0123456789';
+        $otp = '';
+        for ($i = 0; $i < $length; $i++) {
+            $otp .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $otp;
+    }
+    protected function sms_send($number, $otp)
+    {
+        $url = "http://bulksmsbd.net/api/smsapi";
+        $api_key = "nz0NA1WwMB0hFBeljYYN";
+        $senderid = "8809604904745";
+        $message = "Your Artghor OTP is " . $otp;
 
+        $data = [
+            "api_key" => $api_key,
+            "senderid" => $senderid,
+            "number" => $number,
+            "message" => $message
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return $response;
+    }
     public function guard()
     {
         return Auth::guard('api');
