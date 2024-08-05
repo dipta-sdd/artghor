@@ -28,6 +28,7 @@ body {
     margin: 0;
     padding: 0;
     padding-bottom: .5em;
+    margin-bottom: 5px;
     /* border-bottom: .09em solid #00f2ff; */
     -webkit-box-shadow: 0 0 1.5px 1px #dddddd;
     -moz-box-shadow: 0 0 1.5px 1px #dddddd;
@@ -107,7 +108,7 @@ nav.navbar.navbar-expand-lg {
 }
 
 
-#nav_con li.nav-item a {
+#nav_con li.nav-item a.nav-link {
     font-size: 1.2rem;
     font-optical-sizing: auto;
     font-style: normal;
@@ -115,28 +116,77 @@ nav.navbar.navbar-expand-lg {
     color: #000000c0;
 }
 
-#nav_con li.nav-item a:hover {
+#nav_con li.nav-item a.nav-link:hover {
     color: #00a7ff;
     transition: .5s;
     transform-origin: left;
 }
 
 @media only screen and (min-width: 992px) {
-    #nav_con li.nav-item a {
+    #nav_con li.nav-item a.nav-link {
         padding-right: 0;
         padding-left: 1em;
     }
 
-    #nav_con li.nav-item a::before {
+    #nav_con li.nav-item a.nav-link::before {
         content: '';
         margin-right: 1em;
         border-left: .2em solid #000000;
     }
 
-    #nav_con li.nav-item:first-child a::before {
+    #nav_con li.nav-item:first-child a.nav-link::before {
         border: none;
     }
-    #nav_con ul{
+    #nav_con ul.navbar-nav{
         padding-right: 1em;
     }
 }
+
+
+/* loader */
+.spinner_con{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(236, 240, 241);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+.spinner {
+    /* z-index: 1001; */
+    width: 56px;
+    height: 56px;
+    display: grid;
+    border-radius: 50%;
+    -webkit-mask: radial-gradient(farthest-side, #0000 40%, #474bff 41%);
+    background: linear-gradient(0deg, rgba(71, 75, 255, 0.5) 50%, rgba(71, 75, 255, 1) 0) center/4.5px 100%,
+        linear-gradient(90deg, rgba(71, 75, 255, 0.25) 50%, rgba(71, 75, 255, 0.75) 0) center/100% 4.5px;
+    background-repeat: no-repeat;
+    animation: spinner-d3o0rx 1s infinite steps(12);
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.915;
+    transform: rotate(30deg);
+}
+
+.spinner::after {
+    opacity: 0.83;
+    transform: rotate(60deg);
+}
+
+@keyframes spinner-d3o0rx {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+

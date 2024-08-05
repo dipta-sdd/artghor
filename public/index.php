@@ -8,22 +8,22 @@ if (strpos($requests[0], 'api/') === 0) {
 } else {
     switch ($requests[0]) {
         case '':
-            require __DIR__ . '/views/home.html';
+            require __DIR__ . '/views/home.php';
             break;
         case '/':
-            require __DIR__ . '/views/home.html';
+            require __DIR__ . '/views/home.php';
             break;
         case 'login':
-            require __DIR__ . '/views/login.html';
+            require __DIR__ . '/views/login.php';
             break;
         case 'signup':
-            require __DIR__ . '/views/signup.html';
+            require __DIR__ . '/views/signup.php';
             break;
         case 'otp':
-            require __DIR__ . '/views/otp.html';
+            require __DIR__ . '/views/otp.php';
             break;
         case 'forget-password':
-            require __DIR__ . '/views/forge_password.html';
+            require __DIR__ . '/views/forge_password.php';
             break;
         default:
             http_response_code(404);

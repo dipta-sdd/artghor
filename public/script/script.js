@@ -20,9 +20,28 @@ function on_page_load(arg) {
                 ) {
                     location.replace("/otp");
                 }
+                if (arg == "!auth") {
+                    location.replace("/");
+                }
                 $(".logged-out").addClass("d-none");
+                $(".logged-in").removeClass("d-none");
+                $("ul a.nav-link.user").html(
+                    `<i class="fa-solid fa-user"></i> ${user.name}`
+                );
+                $(".spinner_con").css("display", "none");
+                // $(".spinner_con")
+                //     .delay(1000)
+                //     .queue(function () {
+                //         $(".spinner_con").css("display", "none");
+                //         $(this).dequeue();
+                //     });
+            },
+            error: function (res) {
+                $(".spinner_con").css("display", "none");
             },
         });
+    } else {
+        $(".spinner_con").css("display", "none");
     }
 }
 function get_user() {
@@ -57,3 +76,11 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = name + "=; Max-Age=-99999999;";
 }
+$(".logout").click(function (e) {
+    e.preventDefault();
+    // alert("logout");
+    deleteCookie("token");
+    localStorage.removeItem("user");
+
+    location.replace("/login");
+});

@@ -13,49 +13,87 @@ body{
     #nav_con nav.navbar {
         margin-top: .5em;
         border-radius: .5em;
-        background: rgba(255, 255, 255, 0.3);
-        -webkit-backdrop-filter: blur(3px);
-        backdrop-filter: blur(3px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 }
 #nav_con{
-    /* background-color: transparent; */
+    background-color: transparent;
     top: 0;
     left: 0;
     box-shadow: none;
+    /* remove comment to make navbar float  */
+    /* position: relative; */
 }
 #nav_con nav.navbar{
     background: rgba(255, 255, 255, 0.3);
     -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media only screen and (min-width: 992px){
+    .con-img {
+        position: relative;
+    }
+
+    .con-img img {
+        width: 100%;
+    }
+
+    .con-abs {
+        position: absolute;
+        background: transparent;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .con-form {
+        height: auto;
+        background: rgba(255, 255, 255, 0.3);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }
 
-.con-img{
-    position: relative;
+@media only screen and (max-width: 991px){
+    #nav_con nav{
+        padding-bottom: 10px;
+    }
+    .con-img {
+        position: relative;
+        background: rgb(129, 236, 236);
+            background-image: url('../images/svg/mobile_auth_bg.svg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+    }
+
+    .con-img img {
+        display: none;
+    }
+
+    .con-abs {
+        
+        min-height: calc(100vh - 82px);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .con-form {
+        height: auto;
+        background: rgba(255, 255, 255, 0.3);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }
-.con-img img{
-    width: 100%;
-}
-.con-abs{
-    position: absolute;
-    background: transparent;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.con-form{
-    height: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+
+
 @media only screen and (min-width: 992px){
     .con-form{
         width: clamp(700px, 50%, 1000px);
@@ -131,8 +169,10 @@ body{
     font-weight: 600;
 }
 .con-form .right label{
-    font-weight: 600;
+    font-weight: 700;
     color: #3f3f3f;
+    margin-bottom: -.3em;
+    padding-left: .5em;
 }
 #nav_con nav.navbar input,
 .con-form .right .input{
@@ -220,4 +260,23 @@ input[type=number] {
 #otp span.error{
     margin: -.3em 0 0 0;
     color: red;
+}
+.spinner_con{
+    display: none;
+}
+
+/* for sign up page */
+.input.is-invalid{
+    -webkit-box-shadow: 0 0 1px rgb(255, 0, 0)c3c3 !important;
+    -moz-box-shadow: 0 0 1px 1px #ff0000 !important;
+    box-shadow: 0 0 1px 1px #ff0000 !important;
+}
+
+span.error {
+    color: #ff0000;
+    font-weight: 600;
+    font-size: small;
+    padding-bottom: 0 !important;
+    margin-bottom: -0.3em !important;
+    padding-left: .5em !important;
 }

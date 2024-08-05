@@ -7,7 +7,7 @@ $("button.login").click(function (e) {
         data: {
             email: email,
             username: email,
-            phone: email,
+            mobile: email,
             password: $(".input.pass").val(),
         },
         success: function (res) {
