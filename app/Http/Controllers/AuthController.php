@@ -109,7 +109,9 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        $user = $this->guard()->user();
         return response()->json([
+            'user' => $user,
             'access_token' => $token,
             'token_type' => 'bearer'
         ]);

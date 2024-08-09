@@ -25,6 +25,13 @@ if (strpos($requests[0], 'api/') === 0) {
         case 'forget-password':
             require __DIR__ . '/views/forge_password.php';
             break;
+            // admin 
+        case 'dashboard':
+            require __DIR__ . '/views/dashboard.php';
+            break;
+        case 'banners':
+            require __DIR__ . '/views/banners.php';
+            break;
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';

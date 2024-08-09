@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\AdminMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,4 +30,14 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('auth/me', [AuthController::class, 'me']);
     Route::post('auth/otp', [AuthController::class, 'otp']);
     Route::post('auth/verify', [AuthController::class, 'verify']);
+});
+
+
+Route::group(['prefix' => 'banner'], function ($router) {
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('index', 'index');
+        Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::put('update', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+    });
 });

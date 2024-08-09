@@ -23,8 +23,14 @@ function on_page_load(arg) {
                 if (arg == "!auth") {
                     location.replace("/");
                 }
+                if (arg == "admin" && user.role != "admin") {
+                    location.replace("/login");
+                } else if (arg == "user" && user.role != "user") {
+                    location.replace("/login");
+                }
                 $(".logged-out").addClass("d-none");
                 $(".logged-in").removeClass("d-none");
+                $(`.r-${user.role}`).removeClass("d-none");
                 $("ul a.nav-link.user").html(
                     `<i class="fa-solid fa-user"></i> ${user.name}`
                 );
@@ -37,6 +43,9 @@ function on_page_load(arg) {
                 //     });
             },
             error: function (res) {
+                if (arg == "auth" || arg == "user" || arg == "admin") {
+                    location.replace("/login");
+                }
                 $(".spinner_con").css("display", "none");
             },
         });
@@ -84,3 +93,40 @@ $(".logout").click(function (e) {
 
     location.replace("/login");
 });
+
+// toast
+function toastError() {
+    showToast("Something went wrong , try again.", "danger", true);
+}
+function showToast(msg, color, autohide) {
+    $(".toast-container.position-static").append(`
+    <div class="toast show text-bg-${color}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+        <div class="toast-header">
+            <img src="../images/favicon.svg" style="height: 20px; width:auto !important" class="rounded me-2" alt="...">
+            <strong class="me-auto">Artghor</strong>
+            <small class="text-body-secondary">${getCurrentTimeInCurrentTimezone()}</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ${msg}
+        </div>
+    </div>
+    `);
+    if (autohide) {
+        var newToast = $(".toast:last");
+        setTimeout(function () {
+            newToast.fadeOut(1000);
+            newToast.remove();
+        }, 5000);
+    }
+}
+function getCurrentTimeInCurrentTimezone() {
+    const now = new Date();
+    const options = {
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        hour: "numeric",
+        minute: "numeric",
+    };
+    const formatter = new Intl.DateTimeFormat("en-US", options);
+    return formatter.format(now);
+}

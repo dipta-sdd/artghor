@@ -2,7 +2,7 @@
 
 
 body {
-    background-color: rgb(236, 240, 241);
+    background-color: rgb(211, 226, 226);
     font-family: 'Quicksand', 'Montserrat', 'Inter';
 }
 
@@ -15,6 +15,7 @@ body {
     .container{
         max-width: 94%;
     }
+
 }
 /* navabr */
 #nav_con {
@@ -24,15 +25,24 @@ body {
     display: block;
     top: 0;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(116, 185, 255);
     margin: 0;
     padding: 0;
-    padding-bottom: .5em;
-    margin-bottom: 5px;
     /* border-bottom: .09em solid #00f2ff; */
-    -webkit-box-shadow: 0 0 1.5px 1px #dddddd;
-    -moz-box-shadow: 0 0 1.5px 1px #dddddd;
-    box-shadow: 0 0 1.5px 1px #dddddd;
+    -webkit-box-shadow: 0 0 2.5px 3px #33333342;
+    -moz-box-shadow: 0 0 2.5px 3px #33333342;
+    box-shadow: 0 0 2.5px 3px #33333342;
+}
+.navbar-brand {
+    padding-top: 1px;
+    padding-bottom: 0;
+}
+@media only screen and (max-width: 991px) {
+    #nav_con{
+        padding-bottom: .5em;
+    }
+    
+
 }
 #nav_con nav{
     padding-top: 0;
@@ -66,10 +76,8 @@ body {
 }
 
 nav.navbar.navbar-expand-lg {
-    /* background: rgb(255, 255, 255); */
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 

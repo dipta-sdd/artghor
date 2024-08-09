@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
@@ -30,28 +28,22 @@
                         <h3>Sign Up</h3>
                         <span class="error"></span>
                         <label for="">Email <b class="text-danger">*</b></label>
-                        <input type="email" name="email" class="input email" autocomplete="new-password"
-                            placeholder="email@email.com" />
+                        <input type="email" name="email" class="input email" autocomplete="new-password" placeholder="email@email.com" />
                         <label for="">Phone <b class="text-danger">*</b></label>
-                        <input type="number" name="mobile" class="input mobile" autocomplete="new-password"
-                            placeholder="01000000000" />
+                        <input type="number" name="mobile" class="input mobile" autocomplete="new-password" placeholder="01000000000" />
 
 
                         <label for="">Name <b class="text-danger">*</b></label>
-                        <input type="text" name="name" class="input name" autocomplete="new-password"
-                            placeholder="Jhon Dave" />
+                        <input type="text" name="name" class="input name" autocomplete="new-password" placeholder="Jhon Dave" />
                         <label for="">Username <b class="text-danger">*</b></label>
-                        <input type="text" name="username" class="input username" autocomplete="new-password"
-                            placeholder="username" />
+                        <input type="text" name="username" class="input username" autocomplete="new-password" placeholder="username" />
 
                         <label for="">Password <b class="text-danger">*</b></label>
-                        <input type="password" name="password" placeholder="Password" autocomplete="new-password"
-                            class="input pass" />
+                        <input type="password" name="password" placeholder="Password" autocomplete="new-password" class="input pass" />
                         <label for="">Confirm Password <b class="text-danger">*</b></label>
-                        <input type="password" name="password_confirmation" placeholder="Confirm Password"
-                            autocomplete="new-password" class="input pass" />
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password" autocomplete="new-password" class="input pass" />
 
-                        <button class="login">Log In</button>
+                        <button class="login">Sign Up</button>
                         <span>
                             <a href="/forge-password">Forge Password</a>
                             <a href="/login">Log In</a>
@@ -70,7 +62,7 @@
 <script src="../script/script.js"></script>
 <script src="../script/signup.js"></script>
 <script>
-on_page_load('!auth');
+    on_page_load('!auth');
 </script>
 
 
