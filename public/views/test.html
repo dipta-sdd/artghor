@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
+    <link rel="stylesheet" href="../style/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/home.css" />
+    <title>ArtGhor</title>
+</head>
+
+<body>
+    <!-- start navbar -->
+    <div id="nav_con">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="../images/logo.svg" alt="">
+                        <strong>ArtGhor</strong></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto mb-2 mb-lg-0 me-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/cart"><i
+                                        class="fa-solid fa-cart-shopping"></i></a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" aria-current="page" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link " aria-current="page" href="/signup">Sign Up</a>
+                            </li>
+                            <!-- <li class="nav-item logged-in d-none">
+                            <a class="nav-link logout" aria-current="page" href="/#">Logout</a>
+                        </li> -->
+                            <li class="nav-item dropdown logged-in d-none">
+                                <a class="nav-link dropdown-toggle user" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="d-none logged-in"><a class="dropdown-item" href="/profile"><i
+                                                class="fa-solid fa-id-card"></i> My
+                                            Profile</a></li>
+                                    <li class="d-none r-admin"><a class="dropdown-item" href="/dashboard"><i
+                                                class="fa-solid fa-id-card"></i> Dashboard</a></li>
+                                    <li class="d-none r-user"><a class="dropdown-item" href="/cart"><i
+                                                class="fa-solid fa-cart-shopping"></i> My
+                                            Cart</a></li>
+                                    <li class="d-none r-user"><a class="dropdown-item" href="/order"><i
+                                                class="fa-regular fa-credit-card"></i> My
+                                            Orders</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="d-none logged-in"><a class="dropdown-item logout" href="/logout"><i
+                                                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <form class="d-flex justify-content-end ">
+                            <input class="form-control " type="text" placeholder="Search">
+                            <button class="btn" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- end navbar -->
+    <!-- start loader -->
+    <div class="spinner_con">
+        <div class="spinner"></div>
+    </div>
+
+
+
+    <!-- end loader -->
+    <!-- toast start  -->
+    <div class="toast-container position-static" style="position: fixed !important; top:100px; right:10px">
+
+    </div>
+    <!-- toast end  -->
+    <div class="container bg-light" id="banner_con">
+
+        <div id="banner_home" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#banner_home" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#banner_home" data-bs-slide-to="1"></li>
+                <li data-bs-target="#banner_home" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <a href="/dev" class="carousel-item active">
+                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015339.png" alt="First slide">
+                </a>
+                <a href="/dev" class="carousel-item">
+                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015509.png" alt="Second slide">
+                </a>
+                <a href="/dev" class="carousel-item">
+                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015339.png" alt="Third slide">
+                </a>
+            </div>
+            <a class="carousel-control-prev" href="#banner_home" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#banner_home" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="section" id="cat_con">
+        <div class="container">
+            <div class="sec-header">Catagory</div>
+            <div class="sec-header2">
+                <div class="left">Browse by Catagory</div>
+                <div class="right">
+                    <span> <i class="fa-solid fa-chevron-left"></i></span>
+                    <span> <i class="fa-solid fa-chevron-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="prod_con">
+        <div class="container">
+            <div class="sec-header">Our Products</div>
+            <div class="sec-header2">
+                <div class="left">Explore Our Products</div>
+                <div class="right">
+                    <span> <i class="fa-solid fa-chevron-left"></i></span>
+                    <span> <i class="fa-solid fa-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container bg-light">
+        <div class="row mx-0 bg-danger">
+            <div class="col-4 bg-primary">ffggf</div>
+        </div>
+    </div> -->
+
+</body>
+<script src="../script/jquery-3.7.1.min.js"></script>
+<script src="../script/popper.min.js"></script>
+<script src="../script/bootstrap.min.js"></script>
+<script src="../script/script.js"></script>
+<script src="../script/home.js"></script>
+<script>
+    on_page_load('');
+</script>
+
+</html>

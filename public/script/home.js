@@ -7,6 +7,12 @@ $(window).on("resize", function () {
 });
 function prod_con_resize() {
     let prod_con_width = $("#prod_con .container").width();
-    prod_con_width -= prod_con_width % 260;
-    $("#prod_con .container .d-flex").width(prod_con_width);
+
+    let extra = prod_con_width % 250;
+    let items = (prod_con_width - extra) / 250 - 1;
+    let gap = extra / items;
+    if (gap < 10) {
+        gap = (extra + 250) / items;
+    }
+    $("#prod_con .container .d-flex").css("column-gap", gap + "px");
 }

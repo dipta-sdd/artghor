@@ -1,0 +1,51 @@
+#main_con .cat{
+    background: white;
+    padding: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 1.5px 0 #535353;
+        -moz-box-shadow: 0 0 1.5px 0 #535353;
+        box-shadow: 0 0 1.5px 0 #535353;
+}
+
+#main_con .cat .cat-con,
+#main_con .cat .cat-icon-name{
+    display: flex;
+}
+#main_con .cat .cat-icon-name{
+    flex: 1;
+}
+#main_con .cat i,
+#main_con .cat img,
+#main_con .cat span{
+    display: inline-block;
+    text-align: center;
+    margin-block: auto;
+    width: auto;
+}
+#main_con .cat img{
+    height: 30px;
+    width: auto;
+    margin-inline: 10pxs;
+}
+#main_con .cat span{
+    font-size: large;
+    flex: 1;
+    text-align: start;
+}
+#main_con .cat i{
+    margin-inline: 10px;
+}
+#main_con .cat ul{
+    all: unset;
+    list-style: none;
+    display: block;
+    height: 0;
+    transition: .5s ;
+}
+
+#main_con .cat:hover ul{
+    height: 100% !important;
+    transition: .5s;
+}
+

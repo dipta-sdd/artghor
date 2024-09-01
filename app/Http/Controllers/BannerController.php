@@ -29,6 +29,9 @@ class BannerController extends Controller
                     return response()->json($e, 500);
                 }
                 $banner->path = $file_name;
+            } else {
+                $field = 'image';
+                return response()->json(['errors' => [$field => ["The banner field is required."]]], 500);
             }
             $banner->link = $req->link;
             $banner->save();

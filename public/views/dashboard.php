@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.svg">
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/admin.css" />
-    <title>ArtGhor</title>
+    <title>ArtGhor | Dashboard</title>
 </head>
 
 <body>
-    <?php require_once 'navbar.php' ?>
+    <?php require_once 'navbar_admin.php' ?>
     <div class="body-con">
         <div class="sidebar con">
             <div class="con">
@@ -21,7 +23,14 @@
             </div>
         </div>
         <div class="admin-body">
-            jjj
+            <div class="col-12" id="dashboard_header">
+                <h4>Dashboard</h4>
+                <!-- <button class="btn btn-outline-primary">Add Banner</button> -->
+                <hr>
+            </div>
+            <div class="row " id="banners_con">
+
+            </div>
         </div>
     </div>
 
@@ -37,7 +46,7 @@
 <script src="../script/script.js"></script>
 <script src="../script/admin.js"></script>
 <script>
-    on_page_load('');
+    on_page_load('admin');
 </script>
 
 </html>

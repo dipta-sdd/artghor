@@ -46,24 +46,17 @@
             </a>
         </div>
     </div>
-    <div id="cat_con">
-        <p>Categories</p>
+    <div class="section" id="cat_con">
         <div class="container">
-            <div class="d-flex">
-                <div class="cat">
-                    <img src="../images/favicon.svg" alt="">
-                    <strong>Brush</strong>
-                </div>
-                <div class="cat"></div>
-                <div class="cat"></div>
-                <div class="cat"></div>
-                <div class="cat"></div>
-            </div>
         </div>
     </div>
-    <div id="prod_con">
-        <p>Products</p>
+    <div class="section" id="prod_con">
         <div class="container">
+            <div class="sec-header"></div>
+            <div class="sec-head2">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
             <div class="d-flex">
                 <div class="item"></div>
                 <div class="item"></div>
@@ -89,7 +82,7 @@
 <script src="../script/script.js"></script>
 <script src="../script/home.js"></script>
 <script>
-on_page_load('');
+    on_page_load('');
 </script>
 
 </html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/style/bootstrap.min.css" />
     <link rel="stylesheet" href="/style/style.css" />
     <link rel="stylesheet" href="/style/admin.css" />
+    <link rel="stylesheet" href="/style/admin_categories.css" />
     <title>ArtGhor</title>
 </head>
 
@@ -24,32 +25,34 @@
         </div>
         <div class="admin-body">
             <div class="col-12" id="dashboard_header">
-                <h4>Banner</h4>
+                <h4>Category</h4>
                 <button class="btn btn-outline-primary header-btn" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-plus"></i> Add
-                    Banner
+                    Catagory
                 </button>
 
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                     aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Add New Banner</h5>
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Add New Category</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <form class="offcanvas-body">
                         <div class="mb-3">
                             <label class="col-form-label-sm">Category <span class="text-danger">*</span></label>
                             <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
-                            <small class="text-danger">dfsgdg</small>
+                            <small class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label class="col-form-label-sm">Description</label>
                             <textarea name="description" class="form-control form-control-sm" type="text"
                                 placeholder="Dscription"></textarea>
+                            <small class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label class="col-form-label-sm">Icon <span class="text-danger">*</span></label>
                             <input name="logo" class="form-control form-control-sm" type="file">
+                            <small class="text-danger"></small>
                         </div>
 
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -57,13 +60,10 @@
                 </div>
                 <hr>
             </div>
-            <div class="row " id="main_con">
-
+            <div class="row py-2 px-1" id="main_con">
             </div>
         </div>
     </div>
-
-
 
 
 
@@ -75,7 +75,47 @@
 <script src="/script/script.js"></script>
 <script src="/script/admin.js"></script>
 <script>
-on_page_load('');
+$.ajax({
+    type: "get",
+    url: "/api/category/index",
+    success: function(cats) {
+        console.log(cats);
+        $.each(cats, function(indexInArray, cat) {
+            showCat(cat);
+        });
+        on_page_load('');
+    },
+    error: (e) => {
+        toastError();
+    }
+});
+
+function showCat(cat) {
+    $('#main_con').append(`
+            <div class="col-lg-3 col-md-4 p-1"> 
+                <div class="cat">
+                    <div class="cat-con">
+                        <div class="cat-icon-name">
+                            <img src="${"/assets/uploades/" +cat.logo}" alt="${cat.name} icon" srcset=""> 
+                            <span>${cat.name}</span>
+                            <i class="fa-solid fa-caret-down"></i> 
+                        </div>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <ul>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                        <li>hjhjhj</li>
+                    </ul>
+                </div>
+            </div>
+        `);
+}
+
 $('.offcanvas-body button.btn').click(function(e) {
     e.preventDefault();
     var formData = new FormData($('form.offcanvas-body')[0]);
@@ -86,7 +126,7 @@ $('.offcanvas-body button.btn').click(function(e) {
         processData: false, //if file uploaded
         contentType: false,
         success: function(response) {
-            showToast("", 'primary', true);
+            showToast("Category Succefully Added.", 'primary', true);
             $('form.offcanvas-body .form-control').val('');
         },
         error: (e) => {

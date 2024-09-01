@@ -32,6 +32,16 @@ if (strpos($requests[0], 'api/') === 0) {
         case 'banners':
             require __DIR__ . '/views/banners.php';
             break;
+        case 'admin/products':
+            require __DIR__ . '/views/products_admin.php';
+            break;
+        case 'admin/product/add':
+            require __DIR__ . '/views/add_product.php';
+            break;
+        case 'admin/categories':
+            require __DIR__ . '/views/admin_categories.php';
+            break;
+
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';
@@ -39,3 +49,5 @@ if (strpos($requests[0], 'api/') === 0) {
             break;
     }
 }
+// AIzaSyASv - Rtz98Fobm5h4I62cZw2XUjXwuf1AQ
+// google api key 

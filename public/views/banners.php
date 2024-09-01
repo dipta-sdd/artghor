@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.svg">
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/admin.css" />
@@ -14,7 +16,7 @@
 </head>
 
 <body>
-    <?php require_once 'navbar.php' ?>
+    <?php require_once 'navbar_admin.php' ?>
     <div class="body-con">
         <div class="sidebar con">
             <div class="con">
@@ -22,7 +24,35 @@
             </div>
         </div>
         <div class="admin-body">
-            <div class="row" id="banners_con">
+            <div class="col-12" id="dashboard_header">
+                <h4>Banner</h4>
+                <button class="btn btn-outline-primary header-btn" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-plus"></i> Add
+                    Banner
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Add New Banner</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <form class="offcanvas-body">
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Banner <span class="text-danger">*</span></label>
+                            <input name="image" class="form-control form-control-sm" id="formFile" type="file">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formLink" class="form-label">Link</label>
+                            <input name="link" class="form-control form-control-sm" id="formLink" type="text"
+                                placeholder="https://artghor.com/">
+                        </div>
+                        <input class="btn btn-outline-primary" type="submit" />
+                    </form>
+                </div>
+                <hr>
+            </div>
+            <div class="row " id="banners_con">
 
             </div>
         </div>
@@ -41,7 +71,7 @@
 <script src="../script/admin.js"></script>
 <script src="../script/banners.js"></script>
 <script>
-    on_page_load('admin');
+    on_page_load('admin', true);
 </script>
 
 </html>

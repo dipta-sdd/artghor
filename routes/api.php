@@ -4,7 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorFamilyController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Middleware\AdminMiddleware;
 
 /*
@@ -39,5 +43,47 @@ Route::group(['prefix' => 'banner'], function ($router) {
         Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
         Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
         Route::put('update', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+    });
+});
+
+Route::group(['prefix' => 'category'], function ($router) {
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('index', 'index');
+        Route::get('read/{id}', 'read');
+        Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
+    });
+});
+
+
+Route::group(['prefix' => 'subCategory'], function ($router) {
+    Route::controller(SubCategoryController::class)->group(function () {
+        Route::get('index', 'index');
+        Route::get('read/{id}', 'read');
+        Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
+    });
+});
+
+
+Route::group(['prefix' => 'product'], function ($router) {
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('index', 'index');
+        Route::get('read/{id}', 'read');
+        Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
+    });
+});
+
+Route::group(['prefix' => 'colorFamily'], function ($router) {
+    Route::controller(ColorFamilyController::class)->group(function () {
+        Route::get('index', 'index');
+        Route::get('read/{id}', 'read');
+        Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
     });
 });

@@ -41,7 +41,9 @@ class AuthController extends Controller
 
     public function me()
     {
-        return response()->json($this->guard()->user());
+        $user = $this->guard()->user();
+        $user['token'] = $this->guard()->refresh();
+        return response()->json($user);
     }
 
     public function logout()

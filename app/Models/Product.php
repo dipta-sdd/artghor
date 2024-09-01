@@ -29,4 +29,8 @@ class Product extends Model
     {
         return $this->belongsTo(Subcategory::class);
     }
+    public function colorfamilies()
+    {
+        return $this->hasMany(Colorfamily::class);
+    }
 }

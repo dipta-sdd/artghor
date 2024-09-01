@@ -2,7 +2,7 @@
 
 
 body {
-    background-color: rgb(211, 226, 226);
+    background-color: #f8f8f8;
     font-family: 'Quicksand', 'Montserrat', 'Inter';
 }
 
@@ -17,6 +17,7 @@ body {
     }
 
 }
+
 /* navabr */
 #nav_con {
     position: -webkit-sticky;
@@ -117,13 +118,15 @@ nav.navbar.navbar-expand-lg {
 
 
 #nav_con li.nav-item a.nav-link {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     font-optical-sizing: auto;
     font-style: normal;
-    font-weight: 600;
+    /* font-weight: 600; */
     color: #000000c0;
 }
-
+.dropdown-menu{
+    transform: scale(.8);
+}
 #nav_con li.nav-item a.nav-link:hover {
     color: #00a7ff;
     transition: .5s;

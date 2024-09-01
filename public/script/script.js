@@ -1,60 +1,72 @@
 // console.log(getCookie("token"));
-function on_page_load(arg) {
+function on_page_load(arg, loader) {
     let token = getCookie("token");
     if (token) {
-        $.ajax({
-            type: "POST",
-            url: "/api/auth/me",
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-            success: function (user) {
-                setTimeout(function () {
-                    localStorage.setItem("user", JSON.stringify(user));
-                }, 30);
-
-                if (
-                    !user.mobile_verified_at &&
-                    !user.email_verified_at &&
-                    arg != "otp"
-                ) {
-                    location.replace("/otp");
-                }
-                if (arg == "!auth") {
-                    location.replace("/");
-                }
-                if (arg == "admin" && user.role != "admin") {
-                    location.replace("/login");
-                } else if (arg == "user" && user.role != "user") {
-                    location.replace("/login");
-                }
-                $(".logged-out").addClass("d-none");
-                $(".logged-in").removeClass("d-none");
-                $(`.r-${user.role}`).removeClass("d-none");
-                $("ul a.nav-link.user").html(
-                    `<i class="fa-solid fa-user"></i> ${user.name}`
-                );
-                $(".spinner_con").css("display", "none");
-                // $(".spinner_con")
-                //     .delay(1000)
-                //     .queue(function () {
-                //         $(".spinner_con").css("display", "none");
-                //         $(this).dequeue();
-                //     });
-            },
-            error: function (res) {
-                if (arg == "auth" || arg == "user" || arg == "admin") {
-                    location.replace("/login");
-                }
-                $(".spinner_con").css("display", "none");
-            },
-        });
+        let user = get_user();
+        if (user) {
+            set_user(user, arg, loader);
+        }
+        verify_token(token, arg, loader);
     } else {
         $(".spinner_con").css("display", "none");
     }
 }
+// get user from server
+function verify_token(token, arg, loader) {
+    $.ajax({
+        type: "POST",
+        url: "/api/auth/me",
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+        success: function (user) {
+            createCookie("token", user.token, 3);
+            set_user(user, arg, loader);
+        },
+        error: function (res) {
+            if (arg == "auth" || arg == "user" || arg == "admin") {
+                location.replace("/login");
+            }
+            $(".spinner_con").css("display", "none");
+        },
+    });
+}
+
+function set_user(user, arg, loader) {
+    setTimeout(function () {
+        sessionStorage.setItem("user", JSON.stringify(user));
+    }, 30);
+
+    if (!user.mobile_verified_at && !user.email_verified_at && arg != "otp") {
+        location.replace("/otp");
+    }
+    if (arg == "!auth") {
+        location.replace("/");
+    }
+    if (arg == "admin" && user.role != "admin") {
+        location.replace("/login");
+    } else if (arg == "user" && user.role != "user") {
+        location.replace("/login");
+    }
+    $(".logged-out").addClass("d-none");
+    $(".logged-in").removeClass("d-none");
+    $(`.r-${user.role}`).removeClass("d-none");
+    $("ul a.nav-link.user").html(
+        `<i class="fa-solid fa-user"></i> ${user.name}`
+    );
+    if (!loader) {
+        $(".spinner_con").css("display", "none");
+    }
+
+    // $(".spinner_con")
+    //     .delay(1000)
+    //     .queue(function () {
+    //         $(".spinner_con").css("display", "none");
+    //         $(this).dequeue();
+    //     });
+}
 function get_user() {
-    let ret = JSON.parse(localStorage.getItem("user"));
+    let ret = JSON.parse(sessionStorage.getItem("user"));
     return ret;
 }
 // Function to create a cookie
@@ -89,7 +101,7 @@ $(".logout").click(function (e) {
     e.preventDefault();
     // alert("logout");
     deleteCookie("token");
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
 
     location.replace("/login");
 });

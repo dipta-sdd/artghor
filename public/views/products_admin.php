@@ -8,9 +8,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="../images/favicon.svg">
-    <link rel="stylesheet" href="/style/bootstrap.min.css" />
-    <link rel="stylesheet" href="/style/style.css" />
-    <link rel="stylesheet" href="/style/admin.css" />
+    <link rel="stylesheet" href="../style/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/admin.css" />
     <title>ArtGhor</title>
 </head>
 
@@ -38,21 +38,15 @@
                     </div>
                     <form class="offcanvas-body">
                         <div class="mb-3">
-                            <label class="col-form-label-sm">Category <span class="text-danger">*</span></label>
-                            <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
-                            <small class="text-danger">dfsgdg</small>
+                            <label for="formFileSm" class="form-label">Banner <span class="text-danger">*</span></label>
+                            <input name="image" class="form-control form-control-sm" id="formFile" type="file">
                         </div>
                         <div class="mb-3">
-                            <label class="col-form-label-sm">Description</label>
-                            <textarea name="description" class="form-control form-control-sm" type="text"
-                                placeholder="Dscription"></textarea>
+                            <label for="formLink" class="form-label">Link</label>
+                            <input name="link" class="form-control form-control-sm" id="formLink" type="text"
+                                placeholder="https://artghor.com/">
                         </div>
-                        <div class="mb-3">
-                            <label class="col-form-label-sm">Icon <span class="text-danger">*</span></label>
-                            <input name="logo" class="form-control form-control-sm" type="file">
-                        </div>
-
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <input class="btn btn-outline-primary" type="submit" />
                     </form>
                 </div>
                 <hr>
@@ -69,35 +63,13 @@
 
 
 </body>
-<script src="/script/jquery-3.7.1.min.js"></script>
-<script src="/script/popper.min.js"></script>
-<script src="/script/bootstrap.min.js"></script>
-<script src="/script/script.js"></script>
-<script src="/script/admin.js"></script>
+<script src="../script/jquery-3.7.1.min.js"></script>
+<script src="../script/popper.min.js"></script>
+<script src="../script/bootstrap.min.js"></script>
+<script src="../script/script.js"></script>
+<script src="../script/admin.js"></script>
 <script>
-on_page_load('');
-$('.offcanvas-body button.btn').click(function(e) {
-    e.preventDefault();
-    var formData = new FormData($('form.offcanvas-body')[0]);
-    $.ajax({
-        type: "post",
-        url: "/api/category/create",
-        data: formData,
-        processData: false, //if file uploaded
-        contentType: false,
-        success: function(response) {
-            showToast("", 'primary', true);
-            $('form.offcanvas-body .form-control').val('');
-        },
-        error: (e) => {
-            e = e.responseJSON;
-            if (!e) {
-                toastError();
-            }
-            labelErrors('form.offcanvas-body .form-control', e.errors);
-        }
-    });
-});
+    on_page_load('');
 </script>
 
 </html>
