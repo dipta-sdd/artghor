@@ -171,7 +171,9 @@
     margin: 0;
     border-top: 2px solid #1c4cff;
 }
-
+#main_con{
+    margin-inline: unset;
+}
 
 /* customizing bootstrap */
 .form-control {
@@ -186,4 +188,8 @@
 
 .form-control.is-invalid:focus{
     box-shadow: none;
+}
+
+.flex-1{
+    flex: 1;
 }

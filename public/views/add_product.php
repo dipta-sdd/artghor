@@ -41,7 +41,7 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">Category <span class="text-danger">&nbsp; *</span> </span>
                         <select type="text" class="form-control" name="category_id">
-                            <option value="0">0</option>
+                            <option value="">Choose one...</option>
                         </select>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">Sub <span class="text-danger">&nbsp; *</span>-Category </span>
                         <select type="text" class="form-control" name="subcategory_id">
-                            <option value="0">0</option>
+                            <option value="">Choose one...</option>
                         </select>
                     </div>
                 </div>
@@ -105,26 +105,9 @@
 <script src="/script/bootstrap.min.js"></script>
 <script src="/script/script.js"></script>
 <script src="/script/admin.js"></script>
+<script src="/script/add_product.js"></script>
 <script>
-on_page_load('');
-$('#main_con .btn').click(function(e) {
-    e.preventDefault();
-    var formData = new FormData($('#main_con')[0]);
-    $.ajax({
-        type: "post",
-        url: "/api/product/create",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-
-        },
-        error: (e) => {
-            e = e.responseJSON;
-            labelErrors('#main_con .form-control', e.errors);
-        }
-    });
-});
+    // on_page_load('');
 </script>
 
 </html>

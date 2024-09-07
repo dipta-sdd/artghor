@@ -45,7 +45,6 @@ if (strpos($requests[0], 'api/') === 0) {
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';
-
             break;
     }
 }

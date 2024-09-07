@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/admin.css" />
+    <link rel="stylesheet" href="../style/products_admin.css" />
     <title>ArtGhor</title>
 </head>
 
@@ -24,35 +25,66 @@
         </div>
         <div class="admin-body">
             <div class="col-12" id="dashboard_header">
-                <h4>Banner</h4>
-                <button class="btn btn-outline-primary header-btn" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-plus"></i> Add
-                    Banner
-                </button>
-
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Add New Banner</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <form class="offcanvas-body">
-                        <div class="mb-3">
-                            <label for="formFileSm" class="form-label">Banner <span class="text-danger">*</span></label>
-                            <input name="image" class="form-control form-control-sm" id="formFile" type="file">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formLink" class="form-label">Link</label>
-                            <input name="link" class="form-control form-control-sm" id="formLink" type="text"
-                                placeholder="https://artghor.com/">
-                        </div>
-                        <input class="btn btn-outline-primary" type="submit" />
-                    </form>
-                </div>
+                <h4>All Products</h4>
                 <hr>
             </div>
-            <div class="row " id="main_con">
+            <div class="row pt-2" id="main_con">
 
+                <div class="col-12 filter-con bg-border">
+                    <div class=" filter my-1">
+                        <div class="input-group my-2">
+                            <span class="input-group-text"><i class="fa-solid fa-sort"></i> &nbsp; Sort By</i></span>
+                            <select type="text" class="form-control" name="sort">
+                                <option value="" selected>Name : A-Z</option>
+                                <option value="">Name : Z-A</option>
+                                <option value="">Price : High - Low</option>
+                                <option value="">Price : Low - High</option>
+                                <option value="">Stock : High - Low</option>
+                                <option value="">Stock : Low - High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-12 my-2 table-con bg-border"> -->
+                <div class=" table-responsive mb-3">
+                    <table class="table table-striped table-bordered align-middle mb-0">
+                        <thead class="">
+                            <tr>
+                                <th style="width: 2.1rem">Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Sub-Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <!-- <th style="min-width:11em">Status</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- </div> -->
+                <div class="col-12">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -68,8 +100,9 @@
 <script src="../script/bootstrap.min.js"></script>
 <script src="../script/script.js"></script>
 <script src="../script/admin.js"></script>
+<script src="../script/products_admin.js"></script>
 <script>
-    on_page_load('');
+
 </script>
 
 </html>

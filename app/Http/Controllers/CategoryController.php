@@ -36,7 +36,8 @@ class CategoryController extends Controller
         $data = $req->validate([
             'name' => 'required|string|max:255|unique:categories',
             'slug' => 'nullable|string|max:20|unique:categories',
-            'description' => 'nullable|string|max:2000'
+            'description' => 'nullable|string|max:2000',
+            'logo' => 'required|image'
         ]);
         try {
             if ($req->hasFile('logo')) {
@@ -67,7 +68,8 @@ class CategoryController extends Controller
             'string|max:255|unique:categories,name,' . $category->id,
             'slug' =>
             'nullable|string|max:20|unique:categories,slug,' . $category->id,
-            'description' => 'nullable|string|max:2000'
+            'description' => 'nullable|string|max:2000',
+            'logo' => 'image'
         ]);
         try {
             if ($req->hasFile('logo')) {

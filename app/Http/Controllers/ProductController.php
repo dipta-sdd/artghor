@@ -15,12 +15,11 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         try {
-            $products = Product::with(['colorfamilies', 'category', 'subcategory']);
-
-            // Filtering
-            if ($request->has('category_id')) {
-                $products = $products->where('category_id', $request->category_id);
-            }
+            $products = Product::with(['colorfamilies', 'category', 'subcategory'])
+                ->when($request->has('category_id'), function ($query) use ($request) {
+                    $query->where('category_id', $request->category_id);
+                })
+                ->paginate($request->limit);
 
             // Sorting
             if ($request->has('sort')) {
@@ -45,7 +44,7 @@ class ProductController extends Controller
                 }
             }
 
-            $products = $products->get();
+            // $products = $products->get();
 
             return response()->json($products, 200);
         } catch (Exception $e) {

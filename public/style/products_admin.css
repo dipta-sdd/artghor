@@ -1,0 +1,38 @@
+.bg-border{
+    background-color: aliceblue;
+    -webkit-box-shadow: 0 0 1.5px 0 #535353;
+        -moz-box-shadow: 0 0 1.5px 0 #535353;
+        box-shadow: 0 0 1.5px 0 #535353;
+}
+.table-responsive{
+    padding-inline: unset;
+    margin-top: 20px;
+    -webkit-box-shadow: 0 0 1.5px 0 #535353;
+        -moz-box-shadow: 0 0 1.5px 0 #535353;
+        box-shadow: 0 0 1.5px 0 #535353;
+        border-radius: 2px;
+}
+.table{
+    --bs-table-striped-bg :rgb(215, 235, 253) !important;
+    --bs-table-bg: aliceblue !important;
+}
+.img img {
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+}
+.product{
+    cursor: pointer;
+}
+
+
+.filter{
+    width: clamp(350px, 33%, 500px);
+}
+
+
+@media only screen and (max-width: 992px){
+    .filter{
+        width: 100%;
+    }
+}

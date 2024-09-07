@@ -17,6 +17,25 @@
 
 <body>
     <?php require_once 'navbar_admin.php' ?>
+    <!-- Modal for delete confirmation-->
+    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Are you sure?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    All product under this will be deleted permanently ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal  -->
     <div class="body-con">
         <div class="sidebar con">
             <div class="con">
@@ -34,12 +53,76 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                     aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Add New Category</h5>
+                        <h5 class="offcanvas-title">Add New Category</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <form class="offcanvas-body">
                         <div class="mb-3">
                             <label class="col-form-label-sm">Category <span class="text-danger">*</span></label>
+                            <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Description</label>
+                            <textarea name="description" class="form-control form-control-sm" type="text"
+                                placeholder="Dscription"></textarea>
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Icon <span class="text-danger req-icon">*</span></label>
+                            <input name="logo" class="form-control form-control-sm" type="file">
+                            <small class="text-danger"></small>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </form>
+                </div>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEdit"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Edit Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <form class="offcanvas-body">
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Category <span class="text-danger">*</span></label>
+                            <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Description</label>
+                            <textarea name="description" class="form-control form-control-sm" type="text"
+                                placeholder="Dscription"></textarea>
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Icon </label>
+                            <input name="logo" class="form-control form-control-sm" type="file">
+                            <small class="text-danger"></small>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </form>
+                </div>
+
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offCanAddSub"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Add Sub-Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <form class="offcanvas-body">
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Category <span class="text-danger">*</span></label>
+                            <select name="category_id" class="form-control form-control-sm" type="text"
+                                placeholder="Category">
+                                <option value="">choose one...</option>
+                            </select>
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Sub-Category <span class="text-danger">*</span></label>
                             <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
                             <small class="text-danger"></small>
                         </div>
@@ -58,10 +141,51 @@
                         <button class="btn btn-primary" type="submit">Save</button>
                     </form>
                 </div>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offCanEditSub"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Edit Sub-Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <form class="offcanvas-body">
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Category</label>
+                            <select name="category_id" class="form-control form-control-sm" type="text"
+                                placeholder="Category" disabled>
+                                <option value="">choose one...</option>
+                            </select>
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Sub-Category <span class="text-danger">*</span></label>
+                            <input name="name" class="form-control form-control-sm" type="text" placeholder="Category">
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Description</label>
+                            <textarea name="description" class="form-control form-control-sm" type="text"
+                                placeholder="Dscription"></textarea>
+                            <small class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label-sm">Icon </label>
+                            <input name="logo" class="form-control form-control-sm" type="file">
+                            <small class="text-danger"></small>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </form>
+                </div>
+
+
                 <hr>
             </div>
             <div class="row py-2 px-1" id="main_con">
+                <div class="float">
+
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -74,70 +198,9 @@
 <script src="/script/bootstrap.min.js"></script>
 <script src="/script/script.js"></script>
 <script src="/script/admin.js"></script>
+<script src="/script/admin_categories.js"></script>
 <script>
-$.ajax({
-    type: "get",
-    url: "/api/category/index",
-    success: function(cats) {
-        console.log(cats);
-        $.each(cats, function(indexInArray, cat) {
-            showCat(cat);
-        });
-        on_page_load('');
-    },
-    error: (e) => {
-        toastError();
-    }
-});
 
-function showCat(cat) {
-    $('#main_con').append(`
-            <div class="col-lg-3 col-md-4 p-1"> 
-                <div class="cat">
-                    <div class="cat-con">
-                        <div class="cat-icon-name">
-                            <img src="${"/assets/uploades/" +cat.logo}" alt="${cat.name} icon" srcset=""> 
-                            <span>${cat.name}</span>
-                            <i class="fa-solid fa-caret-down"></i> 
-                        </div>
-                        <i class="fa-solid fa-plus"></i>
-                    </div>
-                    <ul>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                        <li>hjhjhj</li>
-                    </ul>
-                </div>
-            </div>
-        `);
-}
-
-$('.offcanvas-body button.btn').click(function(e) {
-    e.preventDefault();
-    var formData = new FormData($('form.offcanvas-body')[0]);
-    $.ajax({
-        type: "post",
-        url: "/api/category/create",
-        data: formData,
-        processData: false, //if file uploaded
-        contentType: false,
-        success: function(response) {
-            showToast("Category Succefully Added.", 'primary', true);
-            $('form.offcanvas-body .form-control').val('');
-        },
-        error: (e) => {
-            e = e.responseJSON;
-            if (!e) {
-                toastError();
-            }
-            labelErrors('form.offcanvas-body .form-control', e.errors);
-        }
-    });
-});
 </script>
 
 </html>

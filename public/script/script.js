@@ -24,10 +24,10 @@ function verify_token(token, arg, loader) {
             set_user(user, arg, loader);
         },
         error: function (res) {
-            if (arg == "auth" || arg == "user" || arg == "admin") {
-                location.replace("/login");
-            }
-            $(".spinner_con").css("display", "none");
+            deleteCookie("token");
+            sessionStorage.removeItem("user");
+
+            location.replace("/login");
         },
     });
 }

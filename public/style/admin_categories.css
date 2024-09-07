@@ -1,21 +1,36 @@
+@media only screen and (min-width: 576px){
+    #main_con .cat {width:  95%;}
+}
+@media only screen and (min-width: 768px) {
+    #main_con .cat {
+        width: 48%;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+    #main_con .cat {
+        width: 32%;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #main_con .cat {
+        width: 24%;
+    }
+}
 #main_con .cat{
-    background: white;
-    padding: 5px;
+    background-color: aliceblue;
     border-radius: 3px;
     overflow: hidden;
     -webkit-box-shadow: 0 0 1.5px 0 #535353;
-        -moz-box-shadow: 0 0 1.5px 0 #535353;
-        box-shadow: 0 0 1.5px 0 #535353;
+    -moz-box-shadow: 0 0 1.5px 0 #535353;
+    box-shadow: 0 0 1.5px 0 #535353;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
-#main_con .cat .cat-con,
-#main_con .cat .cat-icon-name{
-    display: flex;
-}
-#main_con .cat .cat-icon-name{
-    flex: 1;
-}
-#main_con .cat i,
 #main_con .cat img,
 #main_con .cat span{
     display: inline-block;
@@ -23,6 +38,7 @@
     margin-block: auto;
     width: auto;
 }
+
 #main_con .cat img{
     height: 30px;
     width: auto;
@@ -30,22 +46,55 @@
 }
 #main_con .cat span{
     font-size: large;
+    padding-left: 20px;
     flex: 1;
     text-align: start;
 }
 #main_con .cat i{
-    margin-inline: 10px;
+    padding-inline: 11px;
+}
+
+#main_con .cat i.fa-pencil,
+#main_con .cat i.fa-plus{
+    padding-block: 11px;
+}
+#main_con .cat i.fa-trash{
+    padding-block: 11px;
 }
 #main_con .cat ul{
     all: unset;
     list-style: none;
     display: block;
-    height: 0;
-    transition: .5s ;
+    border-top: 1px solid #53535344;
 }
 
-#main_con .cat:hover ul{
-    height: 100% !important;
-    transition: .5s;
+
+
+
+
+#main_con .cat-con i.fa-trash:hover ,
+#main_con .cat-con i.fa-pencil:hover {
+    border-inline: 1px solid #53535344;
+}
+#main_con .cat-con i.fa-plus:hover {
+    background-color:#f7fbff;
+    border-left: 1px solid #53535344;
+}
+#main_con .cat ul li{
+    border-bottom: 1px solid #53535344;
+}
+#main_con .cat ul li:last-child{
+    border-bottom: none;
 }
 
+#main_con .cat ul li:hover{
+    background-color: #279eff;
+    transition: .3s;
+}
+
+#main_con .cat ul li i.fa-trash:hover {
+    border-left: 1px solid #53535391;
+}
+#main_con .cat ul li i.fa-pencil:hover {
+    border-inline: 1px solid #53535391;
+}

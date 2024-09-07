@@ -57,7 +57,7 @@
                 </div>
                 <hr>
             </div>
-            <div class="row " id="main_con">
+            <div class="row pt-2" id="main_con">
 
             </div>
         </div>
@@ -75,29 +75,29 @@
 <script src="/script/script.js"></script>
 <script src="/script/admin.js"></script>
 <script>
-on_page_load('');
-$('.offcanvas-body button.btn').click(function(e) {
-    e.preventDefault();
-    var formData = new FormData($('form.offcanvas-body')[0]);
-    $.ajax({
-        type: "post",
-        url: "/api/category/create",
-        data: formData,
-        processData: false, //if file uploaded
-        contentType: false,
-        success: function(response) {
-            showToast("", 'primary', true);
-            $('form.offcanvas-body .form-control').val('');
-        },
-        error: (e) => {
-            e = e.responseJSON;
-            if (!e) {
-                toastError();
+    on_page_load('');
+    $('.offcanvas-body button.btn').click(function(e) {
+        e.preventDefault();
+        var formData = new FormData($('form.offcanvas-body')[0]);
+        $.ajax({
+            type: "post",
+            url: "/api/category/create",
+            data: formData,
+            processData: false, //if file uploaded
+            contentType: false,
+            success: function(response) {
+                showToast("", 'primary', true);
+                $('form.offcanvas-body .form-control').val('');
+            },
+            error: (e) => {
+                e = e.responseJSON;
+                if (!e) {
+                    toastError();
+                }
+                labelErrors('form.offcanvas-body .form-control', e.errors);
             }
-            labelErrors('form.offcanvas-body .form-control', e.errors);
-        }
+        });
     });
-});
 </script>
 
 </html>
