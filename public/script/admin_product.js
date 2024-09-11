@@ -1,23 +1,3 @@
-// $("#main_con .btn").click(function (e) {
-//     e.preventDefault();
-//     var formData = new FormData($("#main_con")[0]);
-//     $.ajax({
-//         type: "post",
-//         url: "/api/product/create",
-//         data: formData,
-//         processData: false,
-//         contentType: false,
-//         success: function (response) {
-//             showToast("Product successfully added.", "primary", true);
-//             // $("#main_con .form-control").val("");
-//         },
-//         error: (e) => {
-//             e = e.responseJSON;
-//             if (e.errors) labelErrors("#main_con .form-control", e.errors);
-//             else toastError();
-//         },
-//     });
-// });
 // load all categories
 $.ajax({
     type: "get",
@@ -33,11 +13,73 @@ $.ajax({
                     `);
             });
         });
+        getProduct();
         on_page_load("");
     },
     error: (e) => {
         toastError();
     },
+});
+// get product details from server
+function getProduct() {
+    const url = window.location.href;
+    let index = url.indexOf("=");
+    const id = url.slice(index + 1, url.length);
+    $.ajax({
+        type: "get",
+        url: "/api/product/read/" + id,
+        success: function (product) {
+            loadProduct(product);
+        },
+    });
+}
+function loadProduct(prod) {
+    console.log(prod);
+    $(".form-control[name=name]").val(prod.name);
+    $(".form-control[name=description]").val(prod.description);
+    $(".form-control[name=category_id]").val(prod.category_id);
+    $(".form-control[name=subcategory_id]").val(prod.subcategory_id);
+    $(".form-control[name=price]").val(prod.price);
+    $(".form-control[name=quantity]").val(prod.quantity);
+    $(".image1").attr("src", "/assets/uploades/" + prod.image1);
+    if (prod.image2)
+        $(".image2").attr("src", "/assets/uploades/" + prod.image2);
+    if (prod.image3)
+        $(".image3").attr("src", "/assets/uploades/" + prod.image3);
+    if (prod.image4)
+        $(".image4").attr("src", "/assets/uploades/" + prod.image4);
+    $("#submit-button").attr("target", prod.id);
+
+    $(".form-control").attr("disabled", "");
+    $("#submit-button").attr("disabled", "");
+    $("#main_con img ,  #edit").removeClass("d-none");
+    $(".hidden").css("display", "none");
+}
+$("#edit").click(function (e) {
+    e.preventDefault();
+    $(".form-control").removeAttr("disabled");
+    $("#submit-button").removeAttr("disabled");
+    $("#main_con img ,  #edit").addClass("d-none");
+    $(".hidden").css("display", "block");
+});
+// click add color family
+$("#btn_color_family").click(function (e) {
+    e.preventDefault();
+    $(".alert").after(`
+        <div class="col-lg-4 col-8">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Color-Family <span class="text-danger">&nbsp; *</span> </span>
+                <input type="text" class="form-control main" name="color_family" placeholder="Color Family" >
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Quantity <span class="text-danger">&nbsp; *</span> </span>
+                <input type="number" class="form-control main" name="color_quantity" placeholder="0" >
+            </div>
+        </div>
+    `);
+    $(".hidden").css("display", "block");
 });
 //  load sub category on category change
 $("select.form-control[name=category_id]").change(function (e) {
@@ -55,6 +97,10 @@ let croppedImageFile1;
 let croppedImageFile2;
 let croppedImageFile3;
 let croppedImageFile4;
+// let status1 = false;
+// let status1 = false;
+// let status1 = false;
+// let status1 = false;
 
 imageInput1.addEventListener("change", function (event) {
     const reader = new FileReader();
@@ -231,7 +277,7 @@ imageInput4.addEventListener("change", function (event) {
 // AJAX upload logic
 submitButton.on("click", function (event) {
     event.preventDefault();
-
+    let target = $("#submit-button").attr("target");
     // Create a FormData object to collect form data
     const formData = new FormData();
     formData.append("name", $('input[name="name"]').val());
@@ -240,24 +286,32 @@ submitButton.on("click", function (event) {
     formData.append("subcategory_id", $('select[name="subcategory_id"]').val());
     formData.append("price", $('input[name="price"]').val());
     formData.append("quantity", $('input[name="quantity"]').val());
-    formData.append("image1", croppedImageFile1, "hjjhhj.jpg");
-    formData.append("image2", croppedImageFile2, "hjjhhj.jpg");
-    formData.append("image3", croppedImageFile3, "hjjhhj.jpg");
-    formData.append("image4", croppedImageFile4, "hjjhhj.jpg");
+    if (croppedImageFile1)
+        formData.append("image1", croppedImageFile1, "hjjhhj.jpg");
+    if (croppedImageFile2)
+        formData.append("image2", croppedImageFile2, "hjjhhj.jpg");
+    if (croppedImageFile3)
+        formData.append("image3", croppedImageFile3, "hjjhhj.jpg");
+    if (croppedImageFile4)
+        formData.append("image4", croppedImageFile4, "hjjhhj.jpg");
 
     // Add additional image fields if necessary
     // ...
 
     // Send the form data via AJAX
     $.ajax({
-        url: "/api/product/create", // Replace with your actual endpoint
+        url: "/api/product/update/" + target, // Replace with your actual endpoint
         type: "POST",
         data: formData,
+        headers: {
+            Authorization: "Bearer " + getCookie("token"),
+        },
         processData: false,
         contentType: false,
         success: function (response) {
             // Handle successful upload
             console.log("Upload successful:", response);
+            loadProduct(response);
         },
         error: function (error) {
             // Handle upload error

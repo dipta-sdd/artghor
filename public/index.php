@@ -41,6 +41,9 @@ if (strpos($requests[0], 'api/') === 0) {
         case 'admin/categories':
             require __DIR__ . '/views/admin_categories.php';
             break;
+        case 'admin/product':
+            require __DIR__ . '/views/admin_product.php';
+            break;
 
         default:
             http_response_code(404);

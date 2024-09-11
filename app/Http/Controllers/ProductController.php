@@ -63,6 +63,7 @@ class ProductController extends Controller
     }
     public function create(ProductCreate $req)
     {
+        // dd(json_encode($req));
         // return response()->json($req, 200);
         $data = $req->validate([
             'name' => 'required|string|max:255|unique:products',
@@ -73,7 +74,7 @@ class ProductController extends Controller
             'subcategory_id' => 'required|exists:subcategories,id',
             'image1' => 'required|image'
         ]);
-
+        // dd(json_encode($req));
         try {
 
             // return response()->json($data, 200);

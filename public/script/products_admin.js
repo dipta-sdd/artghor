@@ -56,3 +56,9 @@ $(document).on("click", ".page-item:not(.disabled):not(.active)", function (e) {
     // alert(link);
     getdata(link);
 });
+
+$(document).on("click", ".product", function (e) {
+    e.preventDefault();
+    let link = $(this).attr("target");
+    location.replace("./product?id=" + link);
+});
