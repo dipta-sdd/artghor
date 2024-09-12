@@ -14,7 +14,6 @@ $.ajax({
             });
         });
         getProduct();
-        on_page_load("");
     },
     error: (e) => {
         toastError();
@@ -30,11 +29,12 @@ function getProduct() {
         url: "/api/product/read/" + id,
         success: function (product) {
             loadProduct(product);
+
+            on_page_load("");
         },
     });
 }
 function loadProduct(prod) {
-    console.log(prod);
     $(".form-control[name=name]").val(prod.name);
     $(".form-control[name=description]").val(prod.description);
     $(".form-control[name=category_id]").val(prod.category_id);
@@ -54,6 +54,31 @@ function loadProduct(prod) {
     $("#submit-button").attr("disabled", "");
     $("#main_con img ,  #edit").removeClass("d-none");
     $(".hidden").css("display", "none");
+    if (prod.colorfamilies) {
+        $(".color").remove();
+        $.each(prod.colorfamilies, function (indexInArray, colorFamily) {
+            $(".alert-con").after(`
+                <div class="col-12 d-flex color" target="${colorFamily.id}">
+                    <div class="flex-1 pe-2">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Color-Family <span class="text-danger">&nbsp; *</span> </span>
+                            <input type="text" class="form-control" name="color_family" placeholder="Color Family" value="${colorFamily.color_family}" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Quantity <span class="text-danger">&nbsp; *</span> </span>
+                            <input type="number" class="form-control" name="color_quantity" placeholder="0"  value="${colorFamily.quantity}" disabled>
+                        </div>
+                    </div>
+                    <div class="p-2 hidden">
+                        <i class="fa-solid fa-trash" target="${colorFamily.id}"></i>
+                    </div>
+                </div>
+            `);
+        });
+        $(".alert").addClass("d-none");
+    }
 }
 $("#edit").click(function (e) {
     e.preventDefault();
@@ -65,17 +90,19 @@ $("#edit").click(function (e) {
 // click add color family
 $("#btn_color_family").click(function (e) {
     e.preventDefault();
-    $(".alert").after(`
-        <div class="col-lg-4 col-8">
-            <div class="input-group mb-3">
-                <span class="input-group-text">Color-Family <span class="text-danger">&nbsp; *</span> </span>
-                <input type="text" class="form-control main" name="color_family" placeholder="Color Family" >
+    $(".alert-con").after(`
+        <div class="col-12 d-flex color">
+            <div class="flex-1 pe-2">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Color-Family <span class="text-danger">&nbsp; *</span> </span>
+                    <input type="text" class="form-control" name="color_family" placeholder="Color Family" >
+                </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-4">
-            <div class="input-group mb-3">
-                <span class="input-group-text">Quantity <span class="text-danger">&nbsp; *</span> </span>
-                <input type="number" class="form-control main" name="color_quantity" placeholder="0" >
+            <div class="col-lg-4 col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Quantity <span class="text-danger">&nbsp; *</span> </span>
+                    <input type="number" class="form-control" name="color_quantity" placeholder="0" >
+                </div>
             </div>
         </div>
     `);
@@ -294,6 +321,9 @@ submitButton.on("click", function (event) {
         formData.append("image3", croppedImageFile3, "hjjhhj.jpg");
     if (croppedImageFile4)
         formData.append("image4", croppedImageFile4, "hjjhhj.jpg");
+    let colorFamily = collectDataArr(".form-control[name=color_family]");
+    let colorQuantity = collectDataArr(".form-control[name=color_quantity]");
+    formData.append("color_family", JSON.stringify(collectColorData()));
 
     // Add additional image fields if necessary
     // ...
@@ -316,6 +346,7 @@ submitButton.on("click", function (event) {
         error: function (error) {
             // Handle upload error
             console.error("Upload error:", error);
+            showToast(e.message, "danger", true);
         },
     });
 });
@@ -338,3 +369,48 @@ function dataURItoBlob(dataURI) {
     // Create a Blob object
     return new Blob([byteArray], { type: contentType });
 }
+// function to collect color family
+function collectColorData() {
+    const colorData = [];
+    $(".color").each(function () {
+        const colorFamily = $(this).find('input[name="color_family"]').val();
+        const colorQuantity = $(this)
+            .find('input[name="color_quantity"]')
+            .val();
+        const target = $(this).attr("target");
+
+        if (colorFamily && colorQuantity) {
+            const colorObject = {
+                color_family: colorFamily,
+                quantity: parseInt(colorQuantity),
+            };
+
+            if (target) {
+                colorObject.id = target;
+            }
+
+            colorData.push(colorObject);
+        }
+    });
+    return colorData;
+}
+
+// delete color family
+$(document).on("click", ".fa-trash", function (e) {
+    e.preventDefault();
+    let id = e.target.getAttribute("target");
+    $.ajax({
+        type: "delete",
+        url: "/api/colorFamily/delete/" + id,
+        headers: {
+            Authorization: "Bearer " + getCookie("token"),
+        },
+        success: function (response) {
+            $(`.color[target=${id}]`).remove();
+            loadProduct(response);
+        },
+        error: function (e) {
+            showToast(e.message, "danger", true);
+        },
+    });
+});

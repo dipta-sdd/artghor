@@ -142,3 +142,13 @@ function getCurrentTimeInCurrentTimezone() {
     const formatter = new Intl.DateTimeFormat("en-US", options);
     return formatter.format(now);
 }
+
+function collectDataArr(selector) {
+    const data = [];
+    let i = 0;
+    $(selector).each(function () {
+        data[i] = $(this).val();
+        i++;
+    });
+    return data;
+}

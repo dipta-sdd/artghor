@@ -261,7 +261,9 @@ submitButton.on("click", function (event) {
         },
         error: function (error) {
             // Handle upload error
-            console.error("Upload error:", error);
+            e = e.responseJSON;
+            if (e.errors) labelErrors("#main_con .form-control", e.errors);
+            else toastError();
         },
     });
 });

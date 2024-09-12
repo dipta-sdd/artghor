@@ -13,17 +13,22 @@
     <link rel="stylesheet" href="/style/admin.css" />
     <title>ArtGhor | Product</title>
     <style>
-    .hidden {
-        display: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    .input-group-text {
-        align-items: start;
-    }
+        .input-group-text {
+            align-items: start;
+        }
 
-    #btn_color_family {
-        float: right;
-    }
+        #btn_color_family {
+            float: right;
+        }
+
+        .fa-trash:hover {
+            color: red;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -122,10 +127,15 @@
                     <img src="" alt="" srcset="" id="cropped-image-preview">
                 </div>
                 <hr>
-                <div class="alert alert-danger hidden" role="alert">
-                    No color family found.
-                    <button class="btn btn-outline-primary" id="btn_color_family">Add color family</button>
+                <div class="row hidden alert-con">
+                    <div class="col-12">
+                        <div class="alert alert-danger" role="alert" style="display: inline-block; ">
+                            No color family found.
+                        </div>
+                        <button class="btn btn-outline-primary mb-2" id="btn_color_family">Add color family</button>
+                    </div>
                 </div>
+
 
 
                 <div><button class="btn btn-primary hidden" id="submit-button" disabled>Update</button></div>
@@ -147,7 +157,7 @@
 <script src="/script/admin.js"></script>
 <script src="/script/admin_product.js"></script>
 <script>
-// on_page_load('');
+    // on_page_load('');
 </script>
 
 </html>

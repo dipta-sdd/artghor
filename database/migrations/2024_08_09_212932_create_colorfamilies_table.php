@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('color_family');
-            $table->string('color_code');
+            $table->string('color_code')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });

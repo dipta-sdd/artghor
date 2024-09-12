@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreate;
+use App\Models\Colorfamily;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
@@ -113,6 +116,29 @@ class ProductController extends Controller
             'category_id' => 'numeric',
             'subcategory_id' => 'numeric',
         ]);
+        if ($req->color_family) {
+            $color_families = json_decode($req->color_family, true);
+            foreach ($color_families as $color_family) {
+                $color_family['product_id'] = $id;
+                if (isset($color_family['id'])) {
+                    try {
+                        $color = Colorfamily::find($color_family['id']);
+                        $color->update($color_family);
+                    } catch (Exception $e) {
+                        // return response()->json(['error' => 'Something wrong with color family check again.'], 500);
+                        return response()->json($e, 500);
+                    }
+                } else {
+                    try {
+                        $color = Colorfamily::create($color_family);
+                    } catch (Exception $e) {
+                        // return response()->json(['error' => 'Something wrong with color family check again.'], 500);
+                        return response()->json($e, 500);
+                    }
+                }
+            }
+            $this->updateProductQuantity($id);
+        }
         try {
             if ($req->hasFile('image1')) {
                 $this->delete_file($product->image1);
@@ -131,6 +157,7 @@ class ProductController extends Controller
                 $data['image4'] = $this->file_saver($req, 'image4');
             }
             $product->update($data);
+            $product = Product::with(['colorfamilies', 'category', 'subcategory'])->find($id);
             return response()->json($product, 200);
         } catch (Exception $e) {
             return response()->json($e, 500);
@@ -172,5 +199,15 @@ class ProductController extends Controller
             throw $e;
         }
         return $file_name;
+    }
+    protected function updateProductQuantity($productId)
+    {
+        DB::table('products')
+            ->where('id', $productId)
+            ->update([
+                'quantity' => DB::table('colorfamilies')
+                    ->where('product_id', $productId)
+                    ->sum('quantity')
+            ]);
     }
 }

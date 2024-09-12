@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Colorfamily;
+use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,8 +68,12 @@ class ColorFamilyController extends Controller
     {
         try {
             $colorfamily = Colorfamily::find($id);
+            $productId = $colorfamily->product_id;
             if ($colorfamily) {
                 Colorfamily::find($id)->delete();
+                $this->updateProductQuantity($productId);
+                $product = Product::with(['colorfamilies', 'category', 'subcategory'])->find($productId);
+                return response()->json($product, 200);
                 return response()->json(['message' => 'Color Family Deleted'], 200);
             }
             return
