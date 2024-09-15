@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorFamilyController;
 use App\Http\Controllers\Controller;
@@ -85,5 +86,12 @@ Route::group(['prefix' => 'colorFamily'], function ($router) {
         Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
         Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
         Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
+    });
+});
+
+
+Route::group(['prefix' => 'cart'], function ($router) {
+    Route::controller(CartController::class)->group(function () {
+        Route::post('add/{product_id}', 'addToCart');
     });
 });

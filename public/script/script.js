@@ -1,19 +1,21 @@
 // console.log(getCookie("token"));
-function on_page_load(arg, loader) {
+async function on_page_load(arg, loader) {
     let token = getCookie("token");
     if (token) {
         let user = get_user();
         if (user) {
             set_user(user, arg, loader);
         }
-        verify_token(token, arg, loader);
+        return await verify_token(token, arg, loader);
     } else {
         $(".spinner_con").css("display", "none");
+        return null;
     }
 }
 // get user from server
-function verify_token(token, arg, loader) {
-    $.ajax({
+async function verify_token(token, arg, loader) {
+    let u = null;
+    await $.ajax({
         type: "POST",
         url: "/api/auth/me",
         headers: {
@@ -22,14 +24,15 @@ function verify_token(token, arg, loader) {
         success: function (user) {
             createCookie("token", user.token, 3);
             set_user(user, arg, loader);
+            u = user;
         },
         error: function (res) {
             deleteCookie("token");
             sessionStorage.removeItem("user");
-
             location.replace("/login");
         },
     });
+    return u;
 }
 
 function set_user(user, arg, loader) {
@@ -54,6 +57,9 @@ function set_user(user, arg, loader) {
     $("ul a.nav-link.user").html(
         `<i class="fa-solid fa-user"></i> ${user.name}`
     );
+    if (user.cartQuantity) {
+        $(".cart-global small").text(user.cartQuantity);
+    }
     if (!loader) {
         $(".spinner_con").css("display", "none");
     }

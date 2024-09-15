@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/home.css" />
+    <link rel="stylesheet" href="../style/product.css" />
     <title>ArtGhor</title>
 </head>
 
@@ -32,7 +34,7 @@
                         <ul class="navbar-nav m-auto mb-2 mb-lg-0 me-0">
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="/cart"><i
-                                        class="fa-solid fa-cart-shopping"></i></a>
+                                        class="fa-solid fa-cart-shopping cart-global"> <small>0</small></i></a>
                             </li>
                             <li class="nav-item logged-out">
                                 <a class="nav-link" aria-current="page" href="/login">Login</a>
@@ -96,83 +98,69 @@
 
     </div>
     <!-- toast end  -->
-    <div class="container bg-light" id="banner_con">
+    <div class="container">
+        <ul id="breadcrumb">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <div class="d-flex prod">
+            <div class="img">
+                <div class="image-container">
+                    <img src="/assets/uploades/product_image11725727053.png" class="active" alt="Product Image 1">
+                    <img src="/assets/uploades/product_image11725727053.png" class="act normal" alt="Product Image 1">
+                    <img src="/assets/uploades/product_image11725654341.jpg" class="normal" alt="Product Image 2">
+                    <img src="/assets/uploades/product_image31725727053.png" class="normal" alt="Product Image 3">
+                    <img src="/assets/uploades/product_image41725727053.png" class="normal" alt="Product Image 4">
+                </div>
+            </div>
+            <div class="data">
+                <span class="name">
+                    fjhsdfhsjdhfjhj
+                </span>
+                <table>
+                    <tr>
+                        <td>Price</td>
+                        <td class="price">৳ 555</td>
+                    </tr>
+                    <tr>
+                        <td>Color Family</td>
+                        <td class="color-family">
+                            <select class="form-control" name="colorfamily">
+                                <option value=""></option>
+                            </select>
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td class="quantity">
+                            <i class="fa-solid fa-minus"></i>
+                            <span>1</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <button class="buy">By Now</button>
+                    <button class="cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div id="banner_home" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#banner_home" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#banner_home" data-bs-slide-to="1"></li>
-                <li data-bs-target="#banner_home" data-bs-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <a href="/dev" class="carousel-item active">
-                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015339.png" alt="First slide">
-                </a>
-                <a href="/dev" class="carousel-item">
-                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015509.png" alt="Second slide">
-                </a>
-                <a href="/dev" class="carousel-item">
-                    <img class="d-block w-100" src="../images/Screenshot 2024-07-30 015339.png" alt="Third slide">
-                </a>
-            </div>
-            <a class="carousel-control-prev" href="#banner_home" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#banner_home" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-    <div class="section" id="cat_con">
-        <div class="container">
-            <div class="sec-header">Catagory</div>
-            <div class="sec-header2">
-                <div class="left">Browse by Catagory</div>
-                <div class="right">
-                    <span> <i class="fa-solid fa-chevron-left"></i></span>
-                    <span> <i class="fa-solid fa-chevron-right"></i></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section" id="prod_con">
-        <div class="container">
-            <div class="sec-header">Our Products</div>
-            <div class="sec-header2">
-                <div class="left">Explore Our Products</div>
-                <div class="right">
-                    <span> <i class="fa-solid fa-chevron-left"></i></span>
-                    <span> <i class="fa-solid fa-chevron-right"></i></span>
-                </div>
-            </div>
-            <div class="d-flex">
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="container bg-light">
-        <div class="row mx-0 bg-danger">
-            <div class="col-4 bg-primary">ffggf</div>
-        </div>
-    </div> -->
+
+
+
+
 
 </body>
 <script src="../script/jquery-3.7.1.min.js"></script>
 <script src="../script/popper.min.js"></script>
 <script src="../script/bootstrap.min.js"></script>
 <script src="../script/script.js"></script>
-<script src="../script/home.js"></script>
+<script src="../script/product.js"></script>
 <script>
-    on_page_load('');
+    // on_page_load('');
+    $(".spinner_con").css("display", "none");
 </script>
 
 </html>

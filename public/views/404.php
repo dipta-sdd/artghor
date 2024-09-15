@@ -28,7 +28,6 @@
 <script src="../script/script.js"></script>
 <script>
 on_page_load('');
-// $(".spinner_con").css("display", "none");
 </script>
 
 </html>

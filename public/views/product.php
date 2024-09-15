@@ -10,11 +10,26 @@
     <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
     <link rel="stylesheet" href="../style/bootstrap.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/product.css" />
     <title>ArtGhor</title>
 </head>
 
 <body>
     <?php require_once 'navbar.php' ?>
+    <div class="container">
+        <ul id="breadcrumb">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <div class="d-flex prod">
+            <div class="img">
+                <div class="image-container">
+                </div>
+            </div>
+            <div class="data">
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -26,9 +41,10 @@
 <script src="../script/popper.min.js"></script>
 <script src="../script/bootstrap.min.js"></script>
 <script src="../script/script.js"></script>
+<script src="../script/product.js"></script>
 <script>
-on_page_load('');
-// $(".spinner_con").css("display", "none");
+    // on_page_load('');
+    // $(".spinner_con").css("display", "none");
 </script>
 
 </html>

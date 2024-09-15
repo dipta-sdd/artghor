@@ -45,6 +45,12 @@ if (strpos($requests[0], 'api/') === 0) {
             require __DIR__ . '/views/admin_product.php';
             break;
 
+
+
+        case 'product':
+            require __DIR__ . '/views/product.php';
+            break;
+
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';

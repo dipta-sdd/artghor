@@ -3,7 +3,7 @@
 
 body {
     background-color: #f8f8f8;
-    font-family: 'Quicksand', 'Montserrat', 'Inter';
+    font-family:  'Quicksand', 'Montserrat', 'Inter';
 }
 
 .container {
@@ -11,12 +11,7 @@ body {
     margin-top: .5em;
     margin-bottom: .5em;
 }
-@media only screen and (min-width: 1600px) {
-    .container{
-        max-width: 94%;
-    }
 
-}
 
 /* navabr */
 #nav_con {
@@ -26,6 +21,7 @@ body {
     display: block;
     top: 0;
     width: 100%;
+    --bgc: rgb(116, 185, 255);
     background-color: rgb(116, 185, 255);
     margin: 0;
     padding: 0;
@@ -118,7 +114,7 @@ nav.navbar.navbar-expand-lg {
 
 
 #nav_con li.nav-item a.nav-link {
-    /* font-size: 1.2rem; */
+    font-size: 1.2rem;
     font-optical-sizing: auto;
     font-style: normal;
     /* font-weight: 600; */
@@ -152,7 +148,24 @@ nav.navbar.navbar-expand-lg {
         padding-right: 1em;
     }
 }
-
+/* cart quantity  */
+.cart-global{
+    position: relative;
+    & small{
+        position: absolute;
+        display: block;
+        height: 2em;
+        width: 2em;
+        text-align: center;
+        background-color: #fff;
+        padding: .5em;
+        font-size: .5em;
+        color: rgb(0, 0, 0);
+        top: -50%;
+        right: -50%;
+        border-radius: 50%;
+    }
+}
 
 /* loader */
 .spinner_con{
@@ -199,5 +212,75 @@ nav.navbar.navbar-expand-lg {
     100% {
         transform: rotate(1turn);
     }
+}
+
+
+@media (min-width: 576px) {
+
+    .container,
+    .container-sm {
+        max-width: 536px
+    }
+}
+
+@media (min-width: 768px) {
+
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 552px
+    }
+}
+
+@media (min-width: 992px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 812px
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1072px
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1332px
+    }
+}
+
+/* customizing bootstrap */
+.form-control {
+    border-radius: 1px;
+}
+
+.form-control:focus {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-bottom: 1px solid #0066ffc9;
+    box-shadow: none;
+}
+
+.form-control.is-invalid:focus{
+    box-shadow: none;
+}
+
+.flex-1{
+    flex: 1;
 }
 

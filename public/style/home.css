@@ -1,18 +1,24 @@
 /* banners */
-#banner_con{
-    max-width: 100% !important;
-    margin: none;
-    padding: none;
+.bg-ban{
+    background-color: #e7e8ec;
     margin-top: 0 !important;
 }
-#banner_home{
-    /* border: 2px solid #0000003e;
-    border-radius: .5em; */
-    overflow: hidden;
-    -webkit-box-shadow: 0 0 5px 2px #dddddd;
-    -moz-box-shadow: 0 0 5px 2px #dddddd;
-    box-shadow: 0 0 5px 2px #dddddd;
+@media (max-width: 767px) {
+
+    .container,
+    .container-sm {
+        max-width: min(720px , 100vw);
+    }
 }
+#banner_con{
+
+    padding: unset !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+#banner_home{
+    overflow: hidden;
+} 
 #banner_home ol{
     list-style: none;
 }
@@ -45,12 +51,17 @@
 }
 
 
-.section{
-    margin-left: 15px;
+.section {
+    margin-block: 1rem;
 }
 .section .container{
     overflow: hidden;
-    padding-bottom: 1em;
+    padding: 1rem;
+    /* background-color:rgb(255, 255, 255); */
+}
+/* when container transparent it needed */
+#prod_con .d-flex{
+    margin-inline: -5px !important;
 }
 .section .container .sec-header{
     text-align: start;
@@ -73,12 +84,12 @@
 .section .container .sec-header2{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .section .container .sec-header2 .left{
     font-size: large;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.737);
+    font-weight: 600;
+    color: rgb(53, 53, 53);
 }
 .section .container .sec-header2 .right{
    display: flex;
@@ -100,23 +111,108 @@
 .section .container .sec-header2 .right span i{
     color: rgb(90, 88, 88);
 }
+
+/* catagories */
+#cat_con .d-flex {
+    margin-left: auto;
+    margin-right: auto;
+    padding-inline: 1rem;
+    display: block;
+}
+
+#cat_con .d-flex .item{
+    margin-inline: 5px;
+    width: calc(33.3% - 10px) !important;
+    height: 100px;
+    -webkit-box-shadow: 0 0 1px 1px #b9b9b9;
+        -moz-box-shadow: 0 0 1px 1px #b9b9b9;
+        box-shadow: 0 0 1px 1px #b9b9b9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+@media only screen and (min-width: 576px) {
+    #cat_con .d-flex .item {
+        width: calc(33% - 10px) !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    #cat_con .d-flex .item {
+        width: calc(25% - 10px) !important;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #cat_con .d-flex .item {
+        width: calc(20% - 10px) !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #cat_con .d-flex .item {
+        width: calc(16.6% - 10px) !important;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    #cat_con .d-flex .item {
+        width: calc(14.28% - 10px) !important;
+    }
+}
+#cat_con .d-flex .item img{
+    height: 60px;
+    width: auto;
+}
+/* products */
 #prod_con .d-flex{
     --item-width: 250px;
+    --item-width: clamp(200px, calc(45vw - 10px), 250px);
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    column-gap: 10px;
-    row-gap: 20px;
 }
 
 #prod_con .item{
     flex: 0 0 auto;
-    height: 300px;
+    /* height: 300px; */
     width: var(--item-width);
+    aspect-ratio: 250 / 300;
     background: #ffffff;
-    border-radius: .3em;
+    margin-inline: 5px;
     margin-bottom: 2em;
-    
+    /* -webkit-box-shadow: 0 0 1px 1px #e3e3e3;
+    -moz-box-shadow: 0 0 1px 1px #e3e3e3;
+    box-shadow: 0 0 1px 1px #e3e3e3; */
+    cursor: pointer;
+}
+
+#prod_con .item:hover{
+-webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+    transition: .3s;
+}
+
+#prod_con .item img{
+    width: var(--item-width);
+    height: var(--item-width);
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+}
+#prod_con .item span{
+    margin-left: 5px;
+    display: block;
+}
+#prod_con .item span.name {
+    font-weight: 500;
+}
+#prod_con .item span.price {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #74b9ff;
 }

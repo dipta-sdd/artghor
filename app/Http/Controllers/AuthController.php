@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,7 @@ class AuthController extends Controller
     {
         $user = $this->guard()->user();
         $user['token'] = $this->guard()->refresh();
+        $user['cartQuantity'] = Cart::where('user_id', $user->id)->sum('quantity');
         return response()->json($user);
     }
 
@@ -112,6 +114,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         $user = $this->guard()->user();
+        $user['cartQuantity'] = Cart::where('user_id', $user->id)->sum('quantity');
         return response()->json([
             'user' => $user,
             'access_token' => $token,
