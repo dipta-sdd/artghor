@@ -193,6 +193,7 @@ nav.navbar.navbar-expand-lg {
     animation: spinner-d3o0rx 1s infinite steps(12);
 }
 
+
 .spinner::before,
 .spinner::after {
     content: "";
