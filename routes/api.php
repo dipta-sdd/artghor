@@ -32,7 +32,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 Route::middleware(['auth:api'])->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::post('auth/refresh', [AuthController::class, 'refresh']);
-    Route::post('auth/me', [AuthController::class, 'me']);
+    Route::any('auth/me', [AuthController::class, 'me']);
     Route::post('auth/otp', [AuthController::class, 'otp']);
     Route::post('auth/verify', [AuthController::class, 'verify']);
 });
@@ -93,5 +93,10 @@ Route::group(['prefix' => 'colorFamily'], function ($router) {
 Route::group(['prefix' => 'cart'], function ($router) {
     Route::controller(CartController::class)->group(function () {
         Route::post('add/{product_id}', 'addToCart');
+        Route::post('update/{id}', 'update');
+        Route::delete('delete/{id}', 'delete');
+        Route::get('get', 'showCart');
+        Route::post('checkout', 'checkout');
+        Route::post('confirm/{id}', 'confirmOrder');
     });
 });

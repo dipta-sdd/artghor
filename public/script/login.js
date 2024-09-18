@@ -12,9 +12,12 @@ $("button.login").click(function (e) {
         },
         success: function (res) {
             createCookie("token", res.access_token, 3);
-            console.log(res.user.role);
-            if (res.user.role == "admin") location.replace("/dashboard");
-            else location.replace("/");
+            sessionStorage.setItem("user", JSON.stringify(res.user));
+            setTimeout(function () {
+                // alert("");
+                if (res.user.role == "admin") location.replace("/dashboard");
+                else location.replace("/");
+            }, 1000);
         },
         error: function () {
             showToast("Invalid credentials. Try again", "danger", false);

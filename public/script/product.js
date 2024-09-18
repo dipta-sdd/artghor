@@ -5,7 +5,7 @@ async function getProduct() {
     const url = window.location.href;
     let index = url.indexOf("=");
     const id = url.slice(index + 1, url.length);
-    return await $.ajax({
+    await $.ajax({
         type: "get",
         url: "/api/product/read/" + id,
         success: async function (product) {
@@ -88,18 +88,22 @@ async function getProduct() {
                 `);
                 });
             }
+
+            $("#breadcrumb").append(`
+                <li><a href="/products?catgory=${product.category.id}"> <img src="/assets/uploades/${product.category.logo}"></img> ${product.category.name} </a></li>
+                <li><a href="/products?catgory=${product.category.id}&subcatgory=${product.subcategory.id}"> <img src="/assets/uploades/${product.subcategory.logo}"></img> ${product.subcategory.name} </a></li>
+            `);
             return await on_page_load("");
         },
     });
-    console.log(user);
     return user;
 }
 $(document).ready(async function () {
     // console.log(new Date().getTime());
-    let user = await getProduct();
+    await getProduct();
     // console.log(user);
     // console.log(new Date().getTime());
-
+    const user = get_user();
     $(document).on("click", ".quantity .fa-plus", function (e) {
         let quantity = $(".quantity span").text();
         quantity++;
@@ -115,27 +119,31 @@ $(document).ready(async function () {
 
     $(document).on("click", ".cart", function (e) {
         e.preventDefault();
-        let product_id = e.target.getAttribute("target");
-        let quantity = $(".quantity span").text();
-        let datas = {};
-        datas["quantity"] = quantity;
-        let cf_id = $(".prod .data .color-family select").val();
-        if (cf_id) {
-            datas["colorfamilies_id"] = cf_id;
+        if (user) {
+            let product_id = e.target.getAttribute("target");
+            let quantity = $(".quantity span").text();
+            let datas = {};
+            datas["quantity"] = quantity;
+            let cf_id = $(".prod .data .color-family select").val();
+            if (cf_id) {
+                datas["colorfamilies_id"] = cf_id;
+            }
+            $.ajax({
+                type: "post",
+                url: "/api/cart/add/" + product_id,
+                data: datas,
+                headers: {
+                    Authorization: "Bearer " + getCookie("token"),
+                },
+                success: function (res) {
+                    $(".cart-global small").text(res.totalQuantity);
+                },
+                error: function (e) {
+                    toastError();
+                },
+            });
+        } else {
+            location.replace("/login");
         }
-        $.ajax({
-            type: "post",
-            url: "/api/cart/add/" + product_id,
-            data: datas,
-            headers: {
-                Authorization: "Bearer " + getCookie("token"),
-            },
-            success: function (res) {
-                $(".cart-global small").text(res.totalQuantity);
-            },
-            error: function (e) {
-                toastError();
-            },
-        });
     });
 });

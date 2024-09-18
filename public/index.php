@@ -50,6 +50,12 @@ if (strpos($requests[0], 'api/') === 0) {
         case 'product':
             require __DIR__ . '/views/product.php';
             break;
+        case 'cart':
+            require __DIR__ . '/views/cart.php';
+            break;
+        case 'checkout':
+            require __DIR__ . '/views/checkout.php';
+            break;
 
         default:
             http_response_code(404);

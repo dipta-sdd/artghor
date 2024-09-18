@@ -16,7 +16,15 @@
 <body>
     <?php require_once 'navbar.php' ?>
 
-
+    <div class="container">
+        <ul id="breadcrumb">
+            <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+        </ul>
+        <div class="row mx-0">
+            <div class="col-lg-8 p-0 pe-xl-1">df</div>
+            <div class="col-lg-4  p-0 ps-xl-1 mt-xl-0 mt-2">dffd</div>
+        </div>
+    </div>
 
 
 
@@ -27,8 +35,8 @@
 <script src="../script/bootstrap.min.js"></script>
 <script src="../script/script.js"></script>
 <script>
-on_page_load('');
-// $(".spinner_con").css("display", "none");
+    on_page_load('');
+    // $(".spinner_con").css("display", "none");
 </script>
 
 </html>

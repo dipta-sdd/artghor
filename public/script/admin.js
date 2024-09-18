@@ -35,7 +35,14 @@ $(".sidebar .drop-a").click(function (e) {
     const ul = parent.querySelector("ul");
     ul.classList.toggle("show");
 });
+function collectData(selector) {
+    const data = {};
+    $(selector).each(function () {
+        data[$(this).attr("name")] = $(this).val();
+    });
 
+    return data;
+}
 // border red for any error
 function labelErrors(selector, e) {
     $(selector).each(function () {

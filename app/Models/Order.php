@@ -5,25 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'status',
         'user_id',
-        'product_id',
-        'colorfamilies_id',
-        'quantity',
+        'total',
+        'delevery_fee',
+        'payment_type',
+        'bkash_no',
+        'trans_id',
+        'name',
+        'mobile',
+        'district',
+        'thana',
+        'area',
+        'address',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
-    public function colorfamily()
-    {
-        return $this->belongsTo(Colorfamily::class);
     }
 }

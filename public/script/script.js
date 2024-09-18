@@ -1,30 +1,26 @@
-// console.log(getCookie("token"));
-async function on_page_load(arg, loader) {
+function on_page_load(arg, loader) {
     let token = getCookie("token");
     if (token) {
         let user = get_user();
         if (user) {
-            set_user(user, arg, loader);
+            set_user(token, user, arg, loader);
         }
-        return await verify_token(token, arg, loader);
+        verify_token(token, arg, loader);
     } else {
+        if (arg == "admin" || arg == "user") {
+            location.replace("/");
+        }
         $(".spinner_con").css("display", "none");
-        return null;
     }
 }
 // get user from server
-async function verify_token(token, arg, loader) {
-    let u = null;
-    await $.ajax({
+function verify_token(token, arg, loader) {
+    $.ajax({
         type: "POST",
         url: "/api/auth/me",
-        headers: {
-            Authorization: "Bearer " + token,
-        },
         success: function (user) {
-            createCookie("token", user.token, 3);
-            set_user(user, arg, loader);
-            u = user;
+            sessionStorage.setItem("user", JSON.stringify(user));
+            set_user(token, user, arg, loader);
         },
         error: function (res) {
             deleteCookie("token");
@@ -32,24 +28,24 @@ async function verify_token(token, arg, loader) {
             location.replace("/login");
         },
     });
-    return u;
 }
 
-function set_user(user, arg, loader) {
+function set_user(token, user, arg, loader) {
     setTimeout(function () {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        // sessionStorage.setItem("user", JSON.stringify(user));
     }, 30);
-
     if (!user.mobile_verified_at && !user.email_verified_at && arg != "otp") {
+        console.log(user);
+        alert("");
         location.replace("/otp");
     }
     if (arg == "!auth") {
         location.replace("/");
     }
     if (arg == "admin" && user.role != "admin") {
-        location.replace("/login");
+        location.replace("/");
     } else if (arg == "user" && user.role != "user") {
-        location.replace("/login");
+        location.replace("/");
     }
     $(".logged-out").addClass("d-none");
     $(".logged-in").removeClass("d-none");
@@ -63,13 +59,6 @@ function set_user(user, arg, loader) {
     if (!loader) {
         $(".spinner_con").css("display", "none");
     }
-
-    // $(".spinner_con")
-    //     .delay(1000)
-    //     .queue(function () {
-    //         $(".spinner_con").css("display", "none");
-    //         $(this).dequeue();
-    //     });
 }
 function get_user() {
     let ret = JSON.parse(sessionStorage.getItem("user"));
@@ -157,4 +146,22 @@ function collectDataArr(selector) {
         i++;
     });
     return data;
+}
+function collectData(selector) {
+    const data = {};
+    $(selector).each(function () {
+        data[$(this).attr("name")] = $(this).val();
+    });
+
+    return data;
+}
+function labelErrors(selector, e) {
+    $(selector).each(function () {
+        // let name = $(this).attr('name');
+        if (e[$(this).attr("name")]) {
+            $(this).addClass("is-invalid");
+        } else {
+            $(this).removeClass("is-invalid");
+        }
+    });
 }

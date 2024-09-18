@@ -42,8 +42,9 @@ class AuthController extends Controller
 
     public function me()
     {
+        // dd('jkjjj');
         $user = $this->guard()->user();
-        $user['token'] = $this->guard()->refresh();
+        // $user['token'] = $this->guard()->refresh();
         $user['cartQuantity'] = Cart::where('user_id', $user->id)->sum('quantity');
         return response()->json($user);
     }

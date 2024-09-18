@@ -99,14 +99,22 @@
 .section .container .sec-header2 .right span{
     background: #fff;
     display: flex;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
     -webkit-box-shadow: 0 0 2.5px 1px rgba(0, 0, 0, 0.11);
-        -moz-box-shadow: 0 0 2.5px 1px rgba(0, 0, 0, 0.11);
-        box-shadow: 0 0 2.5px 1px rgba(0, 0, 0, 0.11);
+    -moz-box-shadow: 0 0 2.5px 1px rgba(0, 0, 0, 0.11);
+    box-shadow: 0 0 2.5px 1px rgba(0, 0, 0, 0.11);
+    cursor: pointer;
+    & i{
+        padding: 5px;
+    }
+    &.disabled{
+        cursor: unset;
+        background-color: #9c9c9c;
+    }
 }
 .section .container .sec-header2 .right span i{
     color: rgb(90, 88, 88);

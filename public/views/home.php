@@ -70,16 +70,11 @@
             <div class="sec-header2">
                 <div class="left">Browse All Products</div>
                 <div class="right">
-                    <span><i class="fa-solid fa-chevron-left"></i></span>
-                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="prev disabled"><i class="fa-solid fa-chevron-left"></i></span>
+                    <span class="next"><i class="fa-solid fa-chevron-right"></i></span>
                 </div>
             </div>
             <div class="d-flex">
-                <div class="item">
-                    <img src="/assets/uploades/product_image11725654981.jpg" alt="rdfgddd">
-                    <span class="name">Name</span>
-                    <span class="price">৳ 100</span>
-                </div>
 
             </div>
         </div>
