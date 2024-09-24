@@ -1,0 +1,210 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    --font: 'Poppins';
+    /* font-family: 'Poppins'; */
+    font-family: system-ui,
+        -apple-system,
+        'Poppins',
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        "Noto Sans",
+        "Liberation Sans",
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+#nav_con{
+    margin-bottom: 0;
+-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #262a34;
+}
+#nav_con .container{
+    max-width: 100% !important;
+}
+#nav_con nav a{
+    color: #ffffff !important;
+}
+.body-con{
+    width: 100%;
+    height: auto;
+    --sidebar-width: clamp(200px, 15vw , 300px);
+}
+
+.sidebar.con{
+    background-color: #262a34;
+    display: block;
+    width: var(--sidebar-width);
+    height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+}
+
+.sidebar.con .con{
+    width: 100%;
+    padding-top: 10px;
+}
+.sidebar.con .con ul.main{
+    list-style: none;
+    all: unset;
+}
+.sidebar.con .con span.cat,
+.sidebar.con .con a{
+    display: block;
+    background-color: transparent;
+    color: aliceblue;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.sidebar.con .con span.cat{
+    padding-left: 1rem;
+    opacity: .7;
+    font-size: .7rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.sidebar.con .con a{
+    padding-left: 15px;
+    text-decoration: none;
+    font-size: .9rem;
+    padding: .5rem 1rem;
+    transition: 0.2s;
+    position: relative;
+    z-index: 100;
+}
+
+.sidebar.con .con a:hover {
+    background-color: rgb(211, 226, 226);
+    color: #262a34;
+    width: calc(100% + 1px);
+}
+
+.sidebar.con .con a.active {
+    background-color: #1b1919;
+    color: rgb(211, 226, 226);
+    width: 100%;
+    position: relative;
+}
+.sidebar.con .con a.active:after {
+    content: "";
+    background-color: rgb(211, 226, 226);
+    display: block;
+    width: 5px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    right: -1px;
+    position: absolute;
+    clip-path: polygon(0 50%, 100% 65%, 100% 35%);
+}
+.sidebar.con .con li.drop-down {
+    position: relative;
+}
+
+.sidebar.con .con li.drop-down a.drop-a::after {
+    content: '>';
+    position: absolute;
+    right: 5px;
+    rotate: 90deg;
+    transform: scaleY(1.5);
+    font-weight: 400;
+    transition: .3s;
+}
+.sidebar.con .con li.drop-down:has(ul.show) a.drop-a::after{
+    rotate:270deg;
+    transition: rotate .3s;
+}
+.sidebar.con .con li.drop-down ul {
+    all: unset;
+    display: none;
+    height: 0;
+    transform-origin: top;
+    transition: .3s;
+}
+.sidebar.con .con li.drop-down ul.show {
+    display: block;
+    height: 100%;
+    transform-origin: top;
+}
+
+.sidebar.con .con li.drop-down ul li a{
+    padding-left: 25px;
+}
+.admin-body{
+    display: block;
+    margin-left: var(--sidebar-width);
+    padding:1rem;
+    padding-top: 0;
+    overflow: hidden;
+}
+@media (max-width: 991px) {
+    .admin-body{
+        margin-left: 0;
+    }    
+
+    .sidebar.con{
+        left: clamp(-300px, -15vw, -200px) ;
+        transition: left .5s;
+        z-index: 2;
+    }
+    .sidebar.con.show{
+        left: 0;
+        
+    }
+}
+#dashboard_header {
+    margin:0 -1rem;
+    width: calc(100% + 2rem);
+    background-color: transparent !important;
+}
+#dashboard_header h4{
+    margin-left: 1rem;
+    margin-top: .5rem;
+    display: inline-block;
+    color: #1c4dffd0;
+    font-weight: 500;
+}
+#dashboard_header button.header-btn{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 1rem;
+    margin-top: .5rem;
+    border-radius: 3px;
+    float: right;
+    font-weight: 400;
+    font-size: .9rem;
+}
+#dashboard_header hr{
+    margin: 0;
+    border-top: 2px solid #1c4cff;
+}
+#main_con{
+    margin-inline: unset;
+}
+
+/* customizing bootstrap */
+.form-control {
+    border-radius: 1px;
+}
+
+.form-control:focus {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-bottom: 1px solid #0066ffc9;
+    box-shadow: none;
+}
+
+.form-control.is-invalid:focus{
+    box-shadow: none;
+}
+
+.flex-1{
+    flex: 1;
+}

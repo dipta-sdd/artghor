@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="icon" type="image/x-icon" href="../images/favicon.svg"> -->
+    <link rel="stylesheet" href="../style/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/order.css" />
+    <title>ArtGhor | Order</title>
+</head>
+
+<body>
+    <!-- start navbar -->
+    <div id="nav_con">
+        <div class="container">
+            <nav class="navbar navbar-expand">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="../images/logo.svg" alt="">
+                        <strong>ArtGhor</strong></a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto mb-2 mb-lg-0 me-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/cart"><i
+                                        class="fa-solid fa-cart-shopping cart-global"> <small>0</small></i></a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link" aria-current="page" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item logged-out">
+                                <a class="nav-link " aria-current="page" href="/signup">Sign Up</a>
+                            </li>
+                            <!-- <li class="nav-item logged-in d-none">
+                            <a class="nav-link logout" aria-current="page" href="/#">Logout</a>
+                        </li> -->
+                            <li class="nav-item dropdown logged-in d-none">
+                                <a class="nav-link dropdown-toggle user" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="d-none logged-in"><a class="dropdown-item" href="/profile"><i
+                                                class="fa-solid fa-id-card"></i> My
+                                            Profile</a></li>
+                                    <li class="d-none r-admin"><a class="dropdown-item" href="/dashboard"><i
+                                                class="fa-solid fa-id-card"></i> Dashboard</a></li>
+                                    <li class="d-none r-user"><a class="dropdown-item" href="/cart"><i
+                                                class="fa-solid fa-cart-shopping"></i> My
+                                            Cart</a></li>
+                                    <li class="d-none r-user"><a class="dropdown-item" href="/order"><i
+                                                class="fa-regular fa-credit-card"></i> My
+                                            Orders</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="d-none logged-in"><a class="dropdown-item logout" href="/logout"><i
+                                                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <form class="d-flex justify-content-end ">
+                            <input class="form-control " type="text" placeholder="Search">
+                            <button class="btn" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- end navbar -->
+    <!-- start loader -->
+    <div class="spinner_con">
+        <div class="spinner"></div>
+    </div>
+
+
+
+    <!-- end loader -->
+    <!-- toast start  -->
+    <div class="toast-container position-static" style="position: fixed !important; top:100px; right:10px">
+
+    </div>
+    <!-- toast end  -->
+    <div class="container">
+        <ul id="breadcrumb">
+            <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/#"><i class="fa-solid fa-cart-shopping"></i> Order</a></li>
+        </ul>
+        <div class="row mx-0">
+            <div class="col-xl-8 p-0 pe-xl-1 orders-con">
+                <div class="row mx-0">
+
+
+
+
+                    <div class="col orders mybg">
+                        <div class="d-flex header">
+                            <span class="flex-1">
+                                Order No :
+                            </span>
+                            <span class="status">processing</span>
+                        </div>
+                        <div class="header2">
+                            <span>Created At : </span>
+                            <span>Estimated Delevery : </span>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="address col-lg-6">
+                                Delivery Address :
+                            </div>
+                            <div class="summary p-3 col-lg-6 ">
+                                <h6>Order Summary</h6>
+                                <div class="sum-row">
+                                    <span>Subtotal</span>
+                                    <span>৳ 500</span>
+                                </div>
+                                <div class="sum-row">
+                                    <span>Tax</span>
+                                    <span>৳ 0</span>
+                                </div>
+                                <div class="sum-row">
+                                    <span>Delevery Fee</span>
+                                    <span>৳ 60</span>
+                                </div>
+                                <hr>
+                                <div class="sum-row">
+                                    <span>Total</span>
+                                    <span>৳ 60</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mybg order">
+                            <img src="/assets/uploades/product_image11723302317.jpg" alt="product1 image">
+                            <div class="flex-1">
+                                <span class="name">product1</span>
+                                <div class="details">
+                                    <div>
+                                        <span>CF :</span> Red
+                                    </div>
+                                    <div>
+                                        <span>Price :</span> ৳ 110
+                                    </div>
+                                    <div>
+                                        <span>Qty:</span>&nbsp;3
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mybg order">
+                            <img src="/assets/uploades/product_image11723302317.jpg" alt="product1 image">
+                            <div class="flex-1">
+                                <span class="name">product1</span>
+                                <div class="details">
+                                    <div>
+                                        <span>CF :</span> Red
+                                    </div>
+                                    <div>
+                                        <span>Price :</span> ৳ 110
+                                    </div>
+                                    <div>
+                                        <span>Qty:</span>&nbsp;3
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mybg order">
+                            <img src="/assets/uploades/product_image11723302317.jpg" alt="product1 image">
+                            <div class="flex-1">
+                                <span class="name">product1</span>
+                                <div class="details">
+                                    <div>
+                                        <span>CF :</span> Red
+                                    </div>
+                                    <div>
+                                        <span>Price :</span> ৳ 110
+                                    </div>
+                                    <div>
+                                        <span>Qty:</span>&nbsp;3
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <ul id="ul_mbl">
+        <li><a href="/"><i class="fa-solid fa-house"></i> </a></li>
+        <li><a href="/cart"><i class="fa-solid fa-cart-shopping"></i> </a></li>
+        <li><a href="/my-orders"><i class="fa-solid fa-truck-fast"></i></a></li>
+        <li class="r-user d-none"><a href="/"><i class="fa-solid fa-user"></i> </a></li>
+        <li class="r-admin d-none"><a href="/dashboard"><i class="fa-solid fa-barcode"></i> </a></li>
+        <li class="logged-out"><a href="/login"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+    </ul>
+</body>
+<script src="../script/jquery-3.7.1.min.js"></script>
+<script src="../script/popper.min.js"></script>
+<script src="../script/bootstrap.min.js"></script>
+<script src="../script/script.js"></script>
+<script src="../script/order.js"></script>
+<script>
+    // on_page_load('user', true);
+    $(".spinner_con").css("display", "none");
+
+
+</script>
+
+</html>

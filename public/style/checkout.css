@@ -1,0 +1,88 @@
+.address{
+    & h5{
+        margin-left: -5px;
+        margin-bottom: 10px;
+    }
+    & hr{
+        margin-inline: -10px;
+        border-top:1px solid #016dda;
+    }
+    & .required::after{
+        content: ' *';
+        color: rgb(255, 0, 0);
+    }
+    & div *{
+        font-weight: 500;
+    }
+}
+
+.summary {
+    & h6 {
+        color: #0783ff;
+        font-weight: 600;
+        font-size: 1.1em;
+    }
+
+    .sum-row {
+        display: flex;
+
+        & span:first-of-type {
+            flex: 1;
+            font-weight: 500;
+            margin-left: 15px;
+        }
+
+        & span:last-of-type {
+            margin-right: 10px;
+        }
+    }
+
+    & hr {
+        margin: 10px;
+        margin-block: 5px;
+        border-top: 1px solid #0783ff
+    }
+    & hr:first-of-type{
+        margin-inline: -10px;
+        margin-bottom: 15px;
+    }
+
+    & .btn-confirm {
+        border: none;
+        flex: 1;
+        padding: .5em;
+        margin-top: 10px;
+        margin-inline: 10px;
+        background-color: #74b9fd;
+        color: white;
+        font-weight: 700;
+        border-radius: 2px;
+
+        &:hover {
+            background-color: #2893ff;
+        }
+    }
+
+    & .payment{
+        margin-top: 20px;
+        display: block;
+        
+        & span{
+            display: block;
+            padding-bottom: 5px;
+        }
+        & .form-check{
+            display: block;
+            margin-left: 1.5em;
+        }
+
+        & #collapse .card{
+            border: none;
+        }
+
+        & .required::after {
+            content: ' *';
+            color: rgb(255, 0, 0);
+        }
+    }
+}
