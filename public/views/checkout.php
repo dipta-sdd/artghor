@@ -231,7 +231,7 @@
                             </select>
                         </div>
                         <div class="col-12 mb-3">
-                            <label class="form-label required">Thana / Upazila</label>
+                            <label class="form-label required">Address</label>
                             <textarea type="text" name="address" class="form-control"
                                 placeholder="House No, Street"></textarea>
                         </div>
@@ -311,7 +311,7 @@
 <script src="../script/script.js"></script>
 <script src="../script/checkout.js"></script>
 <script>
-// $(".spinner_con").css("display", "none");
+    // $(".spinner_con").css("display", "none");
 </script>
 
 </html>

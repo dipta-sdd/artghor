@@ -10,10 +10,23 @@
             <li><a href="/admin/product/add"><i class="fa-regular fa-eye"></i> &nbsp Add Product</a></li>
         </ul>
     </li>
+    <li class="drop-down"><a href="#" class="drop-a"><i class="fa-solid fa-truck"></i> &nbsp Orders</a>
+        <ul>
+            <li><a href="/admin/orders"><i class="fa-solid fa-truck"></i> &nbsp All</a></li>
+            <li><a href="/admin/orders?status=pending"><i class="fa-solid fa-truck"></i> &nbsp Pending</a></li>
+            <li><a href="/admin/orders?status=processing"><i class="fa-solid fa-truck"></i> &nbsp Processing</a></li>
+            <li><a href="/admin/orders?status=ready for shipping"><i class="fa-solid fa-truck"></i> &nbsp Ready for
+                    Shipping</a></li>
+            <li><a href="/admin/orders?status=shipped"><i class="fa-solid fa-truck"></i> &nbsp Shipped</a></li>
+            <li><a href="/admin/orders?status=cancelled"><i class="fa-solid fa-truck"></i> &nbsp Cancelled</a></li>
+            <li><a href="/admin/orders?status=delivered"><i class="fa-solid fa-truck"></i> &nbsp Delivered</a></li>
+        </ul>
+    </li>
     <li class="drop-down"><a href="#" class="drop-a"><i class="fa-solid fa-id-card"></i> &nbsp Profile</a>
         <ul>
             <li><a href="/profile" class="user"><i class="fa-regular fa-user"></i> &nbsp </a></li>
             <li class="logout"><a href="#"><i class="fa-solid fa-right-from-bracket"></i> &nbsp Signout</a></li>
         </ul>
     </li>
+
 </ul>

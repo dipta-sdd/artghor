@@ -1,19 +1,3 @@
-// load categories
-$.ajax({
-    type: "get",
-    url: "/api/category/index",
-    success: function (cats) {
-        $.map(cats, function (cat, indexOrKey) {
-            $("#cat_con .d-flex").append(`
-                    <div class="item">
-                        <img src="/assets/uploades/${cat.logo}" alt="${cat.name}">
-                        ${cat.name}
-                    </div>
-                    `);
-        });
-    },
-});
-
 // load products
 $.ajax({
     type: "get",

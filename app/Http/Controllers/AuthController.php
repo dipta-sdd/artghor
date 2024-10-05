@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\Cart;
+use App\Models\Location;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,44 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function update(Request $request)
+    {
+        try {
 
+            $user = auth('api')->user();
+            // $validateData = $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'email' => 'nullable|string|email|max:255|unique:users.email' . $user->id,
+            //     'mobile' => 'nullable|string|max:11|unique:users.mobile' . $user->id,
+            //     'username' => 'required|string|max:255|unique:users.username' . $user->id,
+            // ]);
+            $user_obj = User::find($user->id);
+            $user_obj->update($request->all());
+            return response()->json($user_obj, 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+    public function updatePassword(Request $request)
+    {
+        try {
+            $validateData = $request->validate([
+                'current_password' => 'required|string',
+                'password' => 'required|string|confirmed|min:8',
+            ]);
+
+            $user_old = auth('api')->user();
+            $user = User::find($user_old->id);
+            if (!password_verify($validateData['current_password'], $user->password)) {
+                return response()->json(['errors' => ['current_password' => ['The current password is incorrect.']]], 401);
+            }
+            $user->password = bcrypt($validateData['password']);
+            $user->save();
+            return response()->json(['message' => 'Password updated successfully.'], 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
     public function me()
     {
         // dd('jkjjj');
@@ -192,5 +230,40 @@ class AuthController extends Controller
     public function guard()
     {
         return Auth::guard('api');
+    }
+
+    public function getLoacation()
+    {
+        try {
+            $user = auth('api')->user();
+            $location = Location::where('user_id', $user->id)->first();
+            return response()->json($location);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function updateLocation(Request $request)
+    {
+        try {
+            $validateData = $request->validate([
+                'name' => 'required|string|max:30',
+                'mobile' => 'required|string|max:11',
+                'district' => 'required|string|max:200',
+                'thana' => 'required|string|max:200',
+                'area' => 'required|string|max:200',
+                'address' => 'required|string|max:200',
+            ]);
+            $user = auth('api')->user();
+            $location = Location::where('user_id', $user->id)->first();
+            if ($location) {
+                $location->update($request->all());
+            } else {
+                $location = Location::create(array_merge($request->all(), ['user_id' => $user->id]));
+            }
+            return response()->json($location, 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 }

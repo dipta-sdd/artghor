@@ -115,7 +115,7 @@
         }
 
     }
-
+ 
 }
 
 .top{
@@ -127,16 +127,25 @@
      
     & .filters{
         display: block;
-
-        & .form-check{
-            display: inline-block;
-            padding-block: 6px;
-        }
+        
         & .form-control{
             display: inline-block;
             width: max-content;
         }
     }
+        & .form-check {
+            display: inline-flex;
+            padding-block: 6px;
+            gap: 5px;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: center;
+            justify-items: center;
+            align-content: center;
+        }
+        & .form-check-label{
+            padding-top: 2px;
+        }
 }
 
 @media only screen and (min-width: 991px) {

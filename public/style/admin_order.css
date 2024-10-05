@@ -1,0 +1,96 @@
+#main_con{
+    & .header{
+        margin-bottom: 0;
+        & .status span{
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2a95ff;
+            margin-right: 2em;
+            
+        }
+        & .dv_date button ,
+        & .status button {
+            border: none;
+            background-color: transparent;
+            color: #2a95ff;
+            padding-inline: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #2375c7;
+                color: #f0f8ff;
+                transition: .3s;
+            }
+
+            &.cancel{
+                color: red;
+
+                &:hover{
+                    background-color: red;
+                    color: #f0f8ff;
+                    transition: .3s;
+                }
+            }
+
+        }
+        & .dv_date .form-control:disabled{
+            border: none;
+            padding: 0;
+            background-color: transparent;
+        }
+        & .status .form-control{
+            display: inline-block;
+            width: max-content;
+            margin-right: 2em;
+        }
+
+        & td{
+            padding: 4px;
+        }
+    }
+
+
+        .bg-border {
+            background-color: aliceblue;
+            -webkit-box-shadow: 0 0 1.5px 0 #535353;
+            -moz-box-shadow: 0 0 1.5px 0 #535353;
+            box-shadow: 0 0 1.5px 0 #535353;
+        }
+    
+        .table-responsive {
+            padding-inline: unset;
+            -webkit-box-shadow: 0 0 1.5px 0 #535353;
+            -moz-box-shadow: 0 0 1.5px 0 #535353;
+            box-shadow: 0 0 1.5px 0 #535353;
+            border-radius: 2px;
+            & td {
+                width: min-content !important;
+            }
+
+            & .img img {
+                    width: 3rem;
+                    height: 3rem;
+                    overflow: hidden;
+                }
+            
+            & .product {
+                cursor: pointer;
+            }
+
+            & .product_name {
+                text-transform: capitalize;
+                width: auto;
+            }
+        }
+    
+        .table {
+            --bs-table-striped-bg: rgb(215, 235, 253) !important;
+            --bs-table-bg: aliceblue !important;
+        }
+    
+        
+}
+
+

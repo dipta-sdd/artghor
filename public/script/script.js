@@ -50,9 +50,18 @@ function set_user(token, user, arg, loader) {
     $(".logged-out").addClass("d-none");
     $(".logged-in").removeClass("d-none");
     $(`.r-${user.role}`).removeClass("d-none");
-    $("ul a.nav-link.user").html(
-        `<i class="fa-solid fa-user"></i> &nbsp; <span>${user.name}</span>`
-    );
+    // $("ul a.nav-link.user").html(
+    //     `<i class="fa-solid fa-user"></i> &nbsp; <span>${user.name}</span>`
+    // );
+    $("#nav2 li:has(a.user)").html(`
+        <a href="/#" class="user"> <i class="fa-solid fa-user"></i> ${user.name}</a>
+         <ul class="dd">
+        <li><a href="/profile"> My Profile</a></li>
+        <li><a href="/orders"> My Orders</a></li>
+        <li><a class="logout" href="/logout"> Logout</a></li>
+    </ul>
+        `);
+
     if (user.cartQuantity) {
         $(".cart-global small").text(user.cartQuantity);
     }
@@ -92,7 +101,7 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = name + "=; Max-Age=-99999999;";
 }
-$(".logout").click(function (e) {
+$(document).on("click", ".logout", function (e) {
     e.preventDefault();
     // alert("logout");
     deleteCookie("token");
@@ -165,3 +174,146 @@ function labelErrors(selector, e) {
         }
     });
 }
+// load categories
+$.ajax({
+    type: "get",
+    url: "/api/category/index",
+    success: function (cats) {
+        $.map(cats, function (cat, indexOrKey) {
+            $("#cat_con").append(`
+                    <li><a href="/products?category=${cat.id}">${cat.name}</a></li>
+                    `);
+            $("#filterByForProductsPage").append(`
+                    <option value="${cat.id}">${cat.name}</option>    
+            `);
+        });
+    },
+});
+
+// navbar
+window.addEventListener("scroll", function () {
+    const nav2Rect = document.getElementById("nav2").getBoundingClientRect();
+    const navCon = document.getElementById("nav_con");
+
+    if (nav2Rect.bottom < 0 || nav2Rect.top > window.innerHeight) {
+        navCon.classList.add("box");
+    } else {
+        navCon.classList.remove("box");
+    }
+});
+function autocomplete(inp, data, enterevent) {
+    /* The autocomplete function takes two arguments:
+      - inp: the text field element
+      - url: the URL to fetch suggestions from
+  */
+    var currentFocus;
+
+    inp.addEventListener("input", function (e) {
+        var a,
+            b,
+            i,
+            val = this.value;
+
+        closeAllLists();
+        if (!val) {
+            return false;
+        }
+        currentFocus = -1;
+
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
+
+        for (i = 0; i < data.length; i++) {
+            if (data[i].toUpperCase().includes(val.toUpperCase())) {
+                b = document.createElement("DIV");
+                b.innerHTML =
+                    "<strong>" + data[i].substr(0, val.length) + "</strong>";
+                b.innerHTML += data[i].substr(val.length);
+                b.innerHTML += "<input type='hidden' value='" + data[i] + "'>";
+                b.addEventListener("click", function (e) {
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                a.appendChild(b);
+            }
+        }
+    });
+
+    inp.addEventListener("keydown", function (e) {
+        var x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode == 40) {
+            currentFocus++;
+            addActive(x);
+        } else if (e.keyCode == 38) {
+            currentFocus--;
+            addActive(x);
+        } else if (e.keyCode == 13) {
+            e.preventDefault();
+            if (currentFocus > -1) {
+                if (x) {
+                    x[currentFocus].click();
+                }
+            }
+        }
+    });
+
+    function addActive(x) {
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = x.length - 1;
+        x[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(x) {
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
+    }
+
+    function closeAllLists(elmnt) {
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+        }
+    }
+
+    document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+}
+var input = document.getElementById("search");
+
+$.ajax({
+    type: "get",
+    url: "/api/product/names",
+    success: function (response) {
+        autocomplete(input, response);
+    },
+});
+
+// on enter event
+$("#search").on("keyup", function (e) {
+    e.preventDefault();
+    if (e.keyCode === 13) {
+        let val = $(this).val();
+        var url = new URL(window.location.href);
+        if (!url.pathname.includes("products")) {
+            window.location.href = "/products?search=" + val;
+        }
+    }
+});
+$("#searchBtn").on("click", function (e) {
+    e.preventDefault();
+
+    let val = $("#search").val();
+    var url = new URL(window.location.href);
+    if (!url.pathname.includes("products")) {
+        window.location.href = "/products?search=" + val;
+    }
+});

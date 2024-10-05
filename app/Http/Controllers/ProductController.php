@@ -15,29 +15,43 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ProductController extends Controller
 {
+
+    public function names(Request $request)
+    {
+        try {
+            $products = Product::select('name')
+                ->when($request->has('search'), function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . $request->search . '%');
+                })->get()->pluck('name')->toArray();
+            return response()->json($products, 200);
+        } catch (Exception $e) {
+            return response()->json($e, 500);
+        }
+    }
     public function index(Request $request)
     {
         try {
-
-
-
-
-
             if ($request->has('sort')) {
                 $sort = $request->sort;
                 $direction = $request->direction ?? 'asc'; // Default direction is ascending
                 $products = Product::with(['colorfamilies', 'category', 'subcategory'])
+                    ->when($request->has('search'), function ($query) use ($request) {
+                        $query->where('name', 'like', '%' . $request->search . '%');
+                    })
                     ->when($request->has('category'), function ($query) use ($request) {
                         $query->where('category_id', $request->category);
                     })
                     ->orderBy($sort, $direction)
-                    ->paginate($request->limit ? $request->limit : 5);
+                    ->paginate($request->limit ? $request->limit : 10);
             } else {
                 $products = Product::with(['colorfamilies', 'category', 'subcategory'])
+                    ->when($request->has('search'), function ($query) use ($request) {
+                        $query->where('name', 'like', '%' . $request->search . '%');
+                    })
                     ->when($request->has('category'), function ($query) use ($request) {
                         $query->where('category_id', $request->category);
                     })
-                    ->paginate($request->limit ? $request->limit : 5);
+                    ->paginate($request->limit ? $request->limit : 10);
             }
 
 

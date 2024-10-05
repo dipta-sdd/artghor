@@ -95,7 +95,7 @@ function loadOrders() {
             on_page_load("user");
         },
         error: function (e) {
-            // window.location.href = "/profile";
+            window.location.href = "/profile";
         },
     });
 }

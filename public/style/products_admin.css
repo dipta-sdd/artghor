@@ -8,7 +8,7 @@
     padding-inline: unset;
     margin-top: 20px;
     -webkit-box-shadow: 0 0 1.5px 0 #535353;
-        -moz-box-shadow: 0 0 1.5px 0 #535353;
+        -moz-box-shadow: 0 0 1.5px 0 #535353; 
         box-shadow: 0 0 1.5px 0 #535353;
         border-radius: 2px;
 }
@@ -27,19 +27,19 @@
 
 .filter-con{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between; */
+    align-items: start;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .filter{
-    width: clamp(350px, 33%, 500px);
+    width: max-content
 }
 
 
 @media only screen and (max-width: 992px){
-    .filter{
-        width: 100%;
-    }
+   
 }
+

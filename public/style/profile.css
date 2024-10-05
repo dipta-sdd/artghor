@@ -1,0 +1,14 @@
+
+
+                #personal-details {
+                    & .form-control:disabled {
+                        border: none;
+                        padding: 0;
+                        background-color: transparent;
+                    }
+        
+                    & .input-group:has(.form-control:disabled) .input-group-text {
+                        border: none;
+                        background-color: transparent;
+                    }
+                }

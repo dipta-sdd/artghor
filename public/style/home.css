@@ -3,16 +3,9 @@
     background-color: #e7e8ec;
     margin-top: 0 !important;
 }
-@media (max-width: 767px) {
 
-    .container,
-    .container-sm {
-        /* max-width: min(720px , 100vw); */
-    }
-}
 #banner_con{
 
-    padding: unset !important;
     margin-top: 0 !important;
     padding-bottom: 0 !important;
 }
@@ -54,15 +47,8 @@
 .section {
     margin-block: 1rem;
 }
-.section .container{
-    overflow: hidden;
-    padding: 1rem;
-    /* background-color:rgb(255, 255, 255); */
-}
-/* when container transparent it needed */
-#prod_con .d-flex{
-    margin-inline: -5px !important;
-}
+
+
 .section .container .sec-header{
     text-align: start;
     padding-left: 15px;
@@ -120,61 +106,10 @@
     color: rgb(90, 88, 88);
 }
 
-/* catagories */
-#cat_con .d-flex {
-    margin-left: auto;
-    margin-right: auto;
-    padding-inline: 1rem;
-    display: block;
-    background-color: #ffffff;
-    padding-block: 1em;
-}
 
-#cat_con .d-flex .item{
-    margin-inline: 5px;
-    width: calc(33.3% - 10px) !important;
-    height: 100px;
-    -webkit-box-shadow: 0 0 1px 1px #b9b9b9;
-        -moz-box-shadow: 0 0 1px 1px #b9b9b9;
-        box-shadow: 0 0 1px 1px #b9b9b9;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-}
-@media only screen and (min-width: 576px) {
-    #cat_con .d-flex .item {
-        width: calc(33% - 10px) !important;
-    }
-}
-@media only screen and (min-width: 768px) {
-    #cat_con .d-flex .item {
-        width: calc(25% - 10px) !important;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    #cat_con .d-flex .item {
-        width: calc(20% - 10px) !important;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    #cat_con .d-flex .item {
-        width: calc(16.6% - 10px) !important;
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    #cat_con .d-flex .item {
-        width: calc(14.28% - 10px) !important;
-    }
-}
-#cat_con .d-flex .item img{
-    height: 60px;
-    width: auto;
+/* when container transparent it needed */
+#prod_con .d-flex {
+    margin-inline: -5px !important;
 }
 /* products */
 #prod_con .d-flex{
@@ -196,7 +131,7 @@
     margin-inline: 5px;
     margin-bottom: 2em;
     /* -webkit-box-shadow: 0 0 1px 1px #e3e3e3;
-    -moz-box-shadow: 0 0 1px 1px #e3e3e3;
+    -moz-box-shadow: 0 0 1px 1px #e3e3e3; 
     box-shadow: 0 0 1px 1px #e3e3e3; */
     cursor: pointer;
 }

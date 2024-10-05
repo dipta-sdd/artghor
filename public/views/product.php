@@ -24,6 +24,19 @@
         <div class="d-flex prod">
             <div class="img">
                 <div class="image-container">
+                    <div class="div1">
+                    </div>
+                    <div class="div6">
+                        <div class="div2" target="1">
+                        </div>
+                        <div class="div3" target="2">
+                        </div>
+                        <div class="div4" target="3">
+                        </div>
+                        <div class="div5" target="4"> </div>
+                    </div>
+
+
                 </div>
             </div>
             <div class="data">

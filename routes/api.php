@@ -36,6 +36,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::any('auth/me', [AuthController::class, 'me']);
     Route::post('auth/otp', [AuthController::class, 'otp']);
     Route::post('auth/verify', [AuthController::class, 'verify']);
+    Route::post('user/update', [AuthController::class, 'update']);
+    Route::post('user/updatePassword', [AuthController::class, 'updatePassword']);
+    Route::get('user/location', [AuthController::class, 'getLoacation']);
+    Route::post('user/location', [AuthController::class, 'updateLocation']);
 });
 
 
@@ -74,6 +78,7 @@ Route::group(['prefix' => 'product'], function ($router) {
     Route::controller(ProductController::class)->group(function () {
         Route::get('index', 'index');
         Route::get('read/{id}', 'read');
+        Route::get('names', 'names');
         Route::post('create', 'create')->middleware(['auth:api', AdminMiddleware::class]);
         Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
         Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
@@ -104,7 +109,12 @@ Route::group(['prefix' => 'cart'], function ($router) {
 
 Route::group(['prefix' => 'order'], function ($router) {
     Route::controller(OrderController::class)->group(function () {
+        Route::get('admin/get/{id}', 'adminIndex')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('admin/update/{id}', 'adminUpdate')->middleware(['auth:api', AdminMiddleware::class]);
         Route::get('get/{id}', 'index');
         Route::get('get', 'all');
+        Route::get('admin/all', 'adminAll')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::post('update/{id}', 'update')->middleware(['auth:api', AdminMiddleware::class]);
+        Route::delete('delete/{id}', 'delete')->middleware(['auth:api', AdminMiddleware::class]);
     });
 });

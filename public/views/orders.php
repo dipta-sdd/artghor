@@ -44,16 +44,21 @@
                         <label class="form-check-label" for="filter-pending"> Processing </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="filter" type="checkbox" value="out for delivery">
-                        <label class="form-check-label" for="filter-shipped"> Out for delivery </label>
+                        <input class="form-check-input" name="filter" type="checkbox" value="ready for delivery">
+                        <label class="form-check-label" for="filter-shipped"> Ready for delivery </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" name="filter" type="checkbox" value="delivered">
-                        <label class="form-check-label" for="filter-delivered"> Delivered </label>
-                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="filter" type="checkbox" value="out for delivery">
+                    <label class="form-check-label" for="filter-shipped"> Out for delivery </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="filter" type="checkbox" value="delivered">
+                    <label class="form-check-label" for="filter-delivered"> Delivered </label>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 

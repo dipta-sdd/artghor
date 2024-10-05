@@ -20,7 +20,7 @@
     <?php require_once 'navbar.php' ?>
 
     <div class="bg-ban section">
-        <div class="container bg-light" id="banner_con">
+        <div class="container" id="banner_con">
             <div id="banner_home" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-bs-target="#banner_home" data-bs-slide-to="0" class="active"></li>
@@ -49,21 +49,6 @@
             </div>
         </div>
     </div>
-    <div class="section" id="cat_con">
-        <div class="container">
-            <div class="sec-header">Categories</div>
-            <div class="sec-header2">
-                <div class="left">Browse Products By Category</div>
-                <div class="right">
-                    <span><i class="fa-solid fa-chevron-left"></i></span>
-                    <span><i class="fa-solid fa-chevron-right"></i></span>
-                </div>
-            </div>
-            <div class="d-flex">
-
-            </div>
-        </div>
-    </div>
     <div class="section" id="prod_con">
         <div class="container">
             <div class="sec-header">Products</div>
@@ -79,7 +64,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="container bg-light">
+    <!-- <div class="container bg-light"> 
         <div class="row mx-0 bg-danger">
             <div class="col-4 bg-primary">ffggf</div>
         </div>

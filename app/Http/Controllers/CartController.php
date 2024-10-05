@@ -168,7 +168,7 @@ class CartController extends Controller
         $order = Order::findOrFail($id);
         $order->update($validatedData);
         $order->created_at = now();
-        $order->delevery_time = now()->addDays(4);
+        $order->delevery_time = now()->addDays(4)->format('Y-m-d');
         $order->save();
         return response()->json(['message' => 'Order updated successfully', 'order' => $order]);
     }

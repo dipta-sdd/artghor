@@ -13,6 +13,9 @@ if (strpos($requests[0], 'api/') === 0) {
         case '/':
             require __DIR__ . '/views/home.php';
             break;
+        case 'profile':
+            require __DIR__ . '/views/profile.php';
+            break;
         case 'login':
             require __DIR__ . '/views/login.php';
             break;
@@ -44,9 +47,19 @@ if (strpos($requests[0], 'api/') === 0) {
         case 'admin/product':
             require __DIR__ . '/views/admin_product.php';
             break;
+        case 'admin/orders':
+            require __DIR__ . '/views/admin_orders.php';
+            break;
+        case 'admin/order':
+            require __DIR__ . '/views/admin_order.php';
+            break;
 
 
 
+
+        case 'products':
+            require __DIR__ . '/views/products.php';
+            break;
         case 'product':
             require __DIR__ . '/views/product.php';
             break;

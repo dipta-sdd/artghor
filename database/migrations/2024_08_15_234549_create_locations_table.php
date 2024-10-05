@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('mobile');
             $table->string('district')->unique();

@@ -73,6 +73,14 @@ function loadProducts(products) {
                 </tr>    
             `);
     });
+    if (products.data.length == 0) {
+        $("tbody").append(`
+            <tr>
+                <td colspan="6">No Products</td>
+            </tr>
+        `);
+    }
+
     $("ul.pagination").html("");
     $.each(products.links, function (indexInArray, page) {
         // console.log(page);
@@ -91,23 +99,22 @@ $(document).on("click", ".page-item:not(.disabled):not(.active)", function (e) {
     getdata(link);
 });
 
-$(document).on("click", ".product", function (e) {
-    e.preventDefault();
-    let link = $(this).attr("target");
-    location.replace("./product?id=" + link);
-});
-
-// when filter change
-$(".filter select").on("change", function () {
+function setURL() {
     const sortBy = $("#sort").val();
     const category = $("#category").val();
     const limit = $("#limit").val();
+    const search = $("#search").val();
 
     const url = new URL(window.location.href);
     const [sort, direction] = sortBy.split("-");
     url.searchParams.set("sort", sort);
     url.searchParams.set("limit", limit);
     url.searchParams.set("direction", direction);
+    if (search) {
+        url.searchParams.set("search", search);
+    } else {
+        url.searchParams.delete("search");
+    }
     if (category) {
         url.searchParams.set("category", category);
     } else {
@@ -117,4 +124,22 @@ $(".filter select").on("change", function () {
     // Update the URL without reloading the page
     history.pushState(null, null, url.toString());
     loadFromURL();
+}
+$(document).on("click", ".product", function (e) {
+    e.preventDefault();
+    let link = $(this).attr("target");
+    location.replace("./product?id=" + link);
+});
+
+// when filter change
+$(".filter select").on("change", setURL());
+
+var input = document.getElementById("search");
+
+$.ajax({
+    type: "get",
+    url: "/api/product/names",
+    success: function (response) {
+        autocomplete(input, response);
+    },
 });

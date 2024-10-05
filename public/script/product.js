@@ -9,40 +9,59 @@ async function getProduct() {
         type: "get",
         url: "/api/product/read/" + id,
         success: async function (product) {
-            $(".image-container").append(`
-                <img src="/assets/uploades/${
-                    product.image1
-                }" class="active" alt="Product Image 1">
-                <img src="/assets/uploades/${
-                    product.image1
-                }" class="act normal" alt="Product Image 1">
-                ${
-                    product.image2
-                        ? `<img src="/assets/uploades/${product.image2}" class="normal" alt="Product Image 2">`
-                        : ""
-                }
-                ${
-                    product.image3
-                        ? `<img src="/assets/uploades/${product.image3}" class="normal" alt="Product Image 3">`
-                        : ""
-                }
-                ${
-                    product.image4
-                        ? `<img src="/assets/uploades/${product.image4}" class="normal" alt="Product Image 4">`
-                        : ""
-                }
+            // $(".image-container").append(`
+            //     <img src="/assets/uploades/${
+            //         product.image1
+            //     }" class="active" alt="Product Image 1">
+            //     <img src="/assets/uploades/${
+            //         product.image1
+            //     }" class="act normal" alt="Product Image 1">
+            //     ${
+            //         product.image2
+            //             ? `<img src="/assets/uploades/${product.image2}" class="normal" alt="Product Image 2">`
+            //             : ""
+            //     }
+            //     ${
+            //         product.image3
+            //             ? `<img src="/assets/uploades/${product.image3}" class="normal" alt="Product Image 3">`
+            //             : ""
+            //     }
+            //     ${
+            //         product.image4
+            //             ? `<img src="/assets/uploades/${product.image4}" class="normal" alt="Product Image 4">`
+            //             : ""
+            //     }
+            // `);
+            $(".image-container .div2").append(`
+                <img src="/assets/uploades/${product.image1}" class="normal active" alt="Product Image 1">
             `);
-            const imageContainer = document.querySelector(".image-container");
-            const images = imageContainer.querySelectorAll("img:not(.active)");
-
-            images.forEach((image) => {
-                image.addEventListener("click", () => {
-                    images.forEach((img) => img.classList.remove("act"));
-                    image.classList.add("act");
-                    const activeImage = imageContainer.querySelector(".active");
-                    activeImage.src = image.src;
-                });
-            });
+            $(".image-container .div1").append(`
+                <img src="/assets/uploades/${product.image1}" class="act main1" alt="Product Image 1">
+            `);
+            if (product.image2) {
+                $(".image-container .div3").append(`
+                    <img src="/assets/uploades/${product.image2}" class="normal" alt="Product Image 2">
+                `);
+                $(".image-container .div1").append(`
+                    <img src="/assets/uploades/${product.image2}" class="main2" alt="Product Image 2">
+                `);
+            }
+            if (product.image3) {
+                $(".image-container .div4").append(`
+                    <img src="/assets/uploades/${product.image3}" class="normal" alt="Product Image 3">
+                `);
+                $(".image-container .div1").append(`
+                    <img src="/assets/uploades/${product.image3}" class="main3" alt="Product Image 3">
+                `);
+            }
+            if (product.image4) {
+                $(".image-container .div5").append(`
+                    <img src="/assets/uploades/${product.image4}" class="normal" alt="Product Image 4">
+                `);
+                $(".image-container .div1").append(`
+                    <img src="/assets/uploades/${product.image4}" class="main4" alt="Product Image 4">
+                `);
+            }
 
             $(".prod .data").append(`
                 <span class="name">
@@ -147,3 +166,18 @@ $(document).ready(async function () {
         }
     });
 });
+
+// imgae sliding
+$(document).on(
+    "click",
+    ".image-container .div6 div:has(img:not(.active))",
+    function (e) {
+        e.preventDefault();
+        let target = $(this).attr("target");
+        $(".image-container .div6 div img").removeClass("active");
+        $(this).find("img").addClass("active");
+        $(".image-container .div1 .act").removeClass("act");
+        $(".image-container .div1 .main" + target).addClass("act");
+        console.log(target);
+    }
+);

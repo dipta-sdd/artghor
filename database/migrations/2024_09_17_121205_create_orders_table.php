@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('thana')->nullable();
             $table->string('area')->nullable();
             $table->text('address')->nullable();
-            $table->timestamp('delevery_time')->nullable();
+            $table->date('delevery_time')->nullable();
             $table->timestamps();
         });
     }
